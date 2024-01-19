@@ -1,0 +1,214 @@
+Usage
+=========
+
+----------------
+**Installation**
+----------------
+
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+**Microcontroller Firmware**
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The easiest way of uploading and managing the controller firmware is through `Visual Studio Code <https://code.visualstudio.com/>`_ and the `Platform.io extension <https://platformio.org/>`_.
+
+^^^^^^^^^^^^^^^^^^^^
+**MATLAB-Framework**
+^^^^^^^^^^^^^^^^^^^^
+No installation needed, clone the repository and open the code!
+
+----------
+**MATLAB**
+----------
+
+The current way of controlling the motor is implemented in the proprietary software-package MATLAB. We opted for this based on convenience, but the basic concepts we used should be translatable to other programming languages. In the following we will explain some of the functions inside the current implementation to give a better overview over the framework.
+
+The code is made up mostly of functions with specific functionalities:
+
+	- Creating time-position signals for some specific situations (Fixed frequencies, random frequencies, signals based on power spectrums, earthquake records...) (``Methods``}-folder)
+	- Helping to create these signals
+	- Setting up and communicating with the serial interface of the motor
+	- Analyzing the data
+
+There are also currently two classes (``Classes``-folder), one to specify the used simulation method for the time-position signal (``MethodEnum.m``) and one class working as a container to organize all the data (``ShakingData.m``). The latter is something like the back-bone of the implementation, since all information is saved into that format, so most of the functions use this container to either manipulate or add to the recorded data.
+
+^^^^^^^^^^^^
+**Overview**
+^^^^^^^^^^^^
+
+Lets look at one specific example. We want to the motor to shake for 10 seconds with two frequencies of 1 Hz and 2 Hz with amplitudes of 5 mm and 1 mm respectively. The starting point here is the file ``MainCreateSimulation.m`` in the main folder. After the initialization we arrive at the following lines
+
+.. code-block:: matlab
+
+    usedMethod = MethodEnum.FixedHarmonic;
+    stepsPerSecond = 100;
+    maxT = 10;
+
+which means that the simulation of our signal will use the ``FixedHarmonic``-method to give us a signal discretized with a time step of :math:`\frac{1}{100}~\text{s}` simulated for 10 s. Afterwards in the ``switch-case`` instruction the method corresponding to the chosen ``MethodEnum`` will be called. 
+
+.. code-block:: matlab
+
+   case MethodEnum.FixedHarmonic
+   %simulateFixedHarmonic, inpt: omega [Hz], amp [mm], maxT [s]
+   [pos,t,name] = SimulateFixedHarmonic([1,2],[5,1],maxT,'nStepsPerSecond',stepsPerSecond);
+   currentSimulationData.inputSignal = [t',pos'];
+   currentSimulationData.motorRate = stepsPerSecond;
+
+We get a position-array ``pos``, a time-array ``t`` and the name corresponding to the method we used, which we can save to the container ``currentSimulationData`` for later use.\
+
+.. note::
+
+   It is critical to set the ``.motorRate`` property here as having different values in the ``pos``-array and the motor software might lead to unexpected behavior!
+
+This creates the following signal:
+
+.. figure:: _figures/Pos_12Hz.png
+
+   Time-position diagram for signal for frequencies of 1 and 2 Hz.
+
+This would be fine to send to the motor, but we also implemented a function inside the ``ShakingData``-class to calculate velocity and acceleration to make sure the table does not operate in unsafe conditions. The method is called ``ShakingData.Setup`` and calculates velocity and acceleration based on finite difference-calculations of the time-position signal.
+
+.. figure:: _figures/Pos_Vel_Acc_12Hz.png
+
+   Time-position, time-velocity and time-acceleration diagrams for signal for frequencies of 1 and  2 Hz.
+
+Note that the velocity diagram starts at a value of 40 mm/s which translates to an incredibly high acceleration. We can also filter the start and end positions of the table, such that it starts and ends more slowly. We implemented the ``FilterMotorInput``-function for this purpose:
+
+.. code-block:: matlab
+
+   currentSimulationData = FilterMotorInput(currentSimulationData,1);
+
+The 1 in the end is the time for speed-up and ramp-down of the motor, so in this case it will take 1 second to reach the desired signal and 1 second in the end to calm down. Mathematically this is done by multiplying a linear function based on the distances to the edges on top of the signal. This leads to the following positions, velocities and accelerations:
+
+.. figure:: _figures/Filtered_Pos_Vel_Acc_12Hz.png
+
+   Filtered Time-position, time-velocity and time-acceleration diagrams for signal for frequencies of 1 and 2 Hz.
+
+Now we can send this data to the motor, but we first have to compile the time-position data to Marv-Code. For that we have the ``WriteMarvCode``-function, which again takes as argument the ``ShakingData``-container. Internally this function translates the given positions into a set of strings that can be sent to the motor via serial communication. The resulting Marv-Code is stored in the ``ShakingData``-container (For more details about Marv-Code see :ref:`the Marv-Code section <marvcode>`). In MATLAB we also need to create a ``serialport``-Object which handles the serial communication. For that we need the serial port of our micro-controller (ESP32) and a baud-rate (The rate in which the communication is happening):
+
+.. code-block:: matlab
+
+   dev = serialport(<COM>,115200);
+
+where the first argument <COM> is the serial port of the controller, for us this was mostly "COM3" since we used Windows. 
+In Windows, the port can be found in the device manager, Linux users can find this with ``$dmesg | grep tty``. We can now send the code to the controller:
+
+.. code-block:: matlab
+
+   SendDataToMotor(currentSimulationData,dev);
+
+which (if successful) should also print information from the motor to the console. Then the shaking can commence:
+
+.. code-block:: matlab
+
+   SendInstructionToUSB(dev,'start',1);
+
+The 1 is needed since we can also send multiple instructions to the controller at the same time, after each one the controller will (hopefully) reply with 'OK'. To catch all these replies we need to send the number of instructions. Maybe we should automate this. The controller will now work through all the saved instructions.
+
+.. note::
+
+   There is no delay after sending the instruction, so make sure that the table is safe to operate before sending the command!
+   
+The shaking can be stopped anytime by executing
+
+.. code-block:: matlab
+
+   SendInstructionToUSB(dev,'stop',1);
+
+It is also of course possible to cut the motor power in emergency situations (although be careful that this might damage motor, driver or controller). The current state of the motor can also be shown by executing
+
+.. code-block:: matlab
+
+   SendInstructionToUSB(dev,'info',1);
+
+^^^^^^^^^^^^^^^^^
+**Motor control**
+^^^^^^^^^^^^^^^^^
+
+The earlier versions of the motor control software used G-Code, which is also found in 3D-printers. The motivation behind this was that the standard already existed and open-source software could be used to communicate with the motor. However we found that there was some overhead in the implementation of G-Code itself (such as acceleration limits), which interfered with the accuracy of the timings, so a new standard was needed. We named it Marv-Code, after its inventor Marvin Banse. An overview of the syntax is given in :ref:`the Marv-Code section <marvcode>`.
+
+One thing to note here is that there are currently no specific safety features implemented. The table has no way of knowing about its initial position or about the limits, since there are no sensors such as limit switches to inform about that. It is also entirely possible that the table behaves in unexpected ways if there are configuration issues, i.e. different settings for time stepping in the motor itself and in the signal. The way in which the controller software currently works means that safety features (maximum position, acceleration, velocity...) have to be implemented BEFORE uploading the code to the controller. This allows for more flexibility in the motor controls. We are working on implementing at least limit switches, s.t. the motor can auto-center itself and also know when it would slide off the rails.
+
+^^^^^^^^^^^^^^^
+**Motor setup**
+^^^^^^^^^^^^^^^
+
+An important property of motor and the table is the amount of steps the motor has to do for one millimeter of table displacement. In Marv-Code this is set externally by the ``set spmm``-command, but it is a property of the physical setup of the table itself.
+
+In our case, we use a belt-gear driven system with a NEMA23 stepper motor. For one full step (not regarding micro-stepping) the motor does 1.8° of rotation. In other words, for one full rotation the motor needs
+
+.. math::
+
+   \frac{360}{1.8} = 200
+
+steps. Furthermore, we use GT2-belts and gears, both have teeth that are 2 mm apart. The used gear has 20 teeth, so one full rotation will move the table by :math:`20\cdot2~\text{mm} = 40~\text{mm}`. Consequently, 40 mm of travel corresponds to 200 steps from the motor, so we have
+
+.. math::
+   
+	\frac{200~\text{steps}}{40~\text{mm}} = 5 \frac{\text{steps}}{\text{mm}}
+
+This also translates to a resolution of 0.2 mm in the position, which is not very good. Thankfully, most stepper motors are able to use micro-stepping to increase the resolution. A micro-stepping of 1/4 (so 800 steps per revolution) for example would increase the resolution to  0.05 mm. Keep in mind that the higher the steps per second, the faster the motor control software has to work. At some point it cannot keep up anymore, so increasing the microstepping to high values is not recommended. There is also a trade-off between microstepping and the available torque in the motor. Basically, higher resolutions in the motor lead to less torque and can also lead to the motor losing steps, which decreases the accuracy. All these calculations and setup decisions depend on the exact table setup, so give it some thought.
+
+This is a small calibration code for steps/mm setting. This code aims at moving the table 10mm in one direction. Please note that after using this code once, e.g. with +10, -10 should be used, otherwise the table will not move.
+
+.. code-block:: matlab
+
+   SendInstructionToUSB(dev , 'reset' , 1 );
+   SendInstructionToUSB(dev , 'set spmm [SPMM]' , 1 );
+   SendInstructionToUSB(dev , 'set rate 0.1' , 1 );
+   SendInstructionToUSB(dev , 'add +- 10' , 1 );
+   SendInstructionToUSB(dev , 'start' , 1 );
+
+After running this code a visual inspection on how much the table actually moved should be performed. If the initial setting of ``[SPMM]`` was not correct, this needs to be adjusted.
+
+
+^^^^^^^^^^^^^
+**Marv-Code**
+^^^^^^^^^^^^^
+.. _marvcode:
+
+.. list-table:: Title
+   :widths: 25 25
+   :header-rows: 1
+
+   * - Syntax
+     - Description
+   * - ``start``
+     - Starts motor movement with previously defined positions at the previously set rate
+   * - ``stop``
+     - Immediately stops motor movement
+   * - ``info``
+     - Writes out information about machine state to serial, ``OK: Info: state: READY, mode POSITION, command 25 of 25, rate: 20hz, spmm: 10``
+   * - ``set rate nnn.nnn``
+     - set the amout of positions to handle in one second
+   * - ``set spmm``
+     - specifies how many steps the motor has to drive to move the carriage one millimeter
+   * - ``add nnn.nnn``
+     - adds a position at the end of list
+   * - ``reset``
+     - resets all positions from memory
+
+The basic principle behind Marv-Code is that the motor is given a rate (instructions per second) and a list of positions so it can calculate the stepping rate needed to reach the given positions for each time step in the simulation. The stepper motor is only able to move in discrete steps, it is therefore necessary for the controller to calculate the exact rate from the given rate and the desired positions.
+
+.. code-block:: matlab
+   :caption: Marv-Code example
+   :linenos:
+   
+   clear previous positions from memory
+	reset
+	# set steps per mm 
+	set spmm 10
+	# set instructions per second 
+	set rate 2.5
+	set mode pos
+	add 1 #add positions (in mm)
+	add 16
+	add 20
+	add 21
+	add 18
+	add 0.5
+	add -20
+	add -22
+	add -20
+	add -10
+	add 0
+	start # start the experiment
