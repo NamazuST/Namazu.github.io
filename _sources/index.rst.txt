@@ -3,8 +3,6 @@ Welcome to Namazu's documentation!
 
 **Namazu** (openShakingTable) is a framework for vibration experiments using shaking tables. **Namazu** is *independent* of operating systems, programming languages and frameworks, as long as the software can interface with serial ports. We provide here documentation for choice of hardware (motors, drivers etc.), the microcontroller firmware and the current implementation in MATLAB and Python.
 
-Also check out the :doc:`mathematical background <mathBackground>` section which includes a guide on how to :ref:`generate Signals <sigGen>`!
-
 .. note::
 
    This project is under active development.
