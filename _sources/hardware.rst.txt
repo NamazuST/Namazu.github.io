@@ -1,0 +1,273 @@
+Hardware
+========
+
+A 3D-rendering of the table can be seen :ref:`below <fig:3DRendering>`.
+The basic hardware components of the shaking table are an aluminum
+frame, linear rails, linear bearings, the plate, the motor with its
+driver and the driving assembly, as well as the necessary electrical
+components. Each component is described in this section and some details
+on their functionality are given. Since different choices can be made
+for each part we also give some comments about possible variants.
+
+.. figure:: _images/renderings/3dtable_annotations.png
+   :name: fig:3DRendering
+
+   3D rendering of the table CAD files.
+
+A technical drawing with dimensions is shown :ref:`below <fig:TechDraw>`.
+The mass of the table is :math:`{6.80}\, \text{kg}`. Its footprint is about
+:math:`{400}\, \text{mm}\times {500}\, \text{mm}` and it takes one person about
+one hour to fully assemble it. :ref:`This table <tab:PartsAndCosts>` gives a list
+of hardware components and the associated costs. Tested properties obtained with Namazu
+are:
+
+.. math::
+
+   \label{eq:PhysProp}
+       \begin{split}
+           \text{Tested payload:} \hspace{1cm} &{2}\, \text{kg},\\
+           \text{Maximum acceleration with payload:} \hspace{1cm} &2\, g,\\
+           \text{Maximum speed with payload:} \hspace{1cm}&{0.4}\, {\text{m/s}}.
+       \end{split}
+
+.. figure:: _images/renderings/technicalDrawing.png
+   :name: fig:TechDraw
+
+   Technical drawing of the table, dimensions in millimeters.
+
+.. container::
+   :name: tab:PartsAndCosts
+
+   .. table:: Costs of shaking table hardware (in 2022-2023, Germany), note that the costs are highly dependent on availability of the components. The cable and tools used for assembly are not mentioned here.
+
+      +-----+-----------------+-------------------------+---------+
+      | Nr. | Hardware        | Description             | Price   |
+      +=====+=================+=========================+=========+
+      |  1  | Frame           | 30x30 I-Type aluminium  | 21.64€  |
+      |     |                 | extrusions (4x 400 mm,  |         |
+      |     |                 | 2x 300 mm, 4x 70 mm)    |         |
+      +-----+-----------------+-------------------------+---------+
+      |  2  | Linear rails    | igus drylin W,          | 31.74€  |
+      |     |                 | WS16_0.4M               |         |
+      +-----+-----------------+-------------------------+---------+
+      |  3  | Linear bearings | igus drylin W,          | 41.48€  |
+      |     |                 | WJ2000UME-01-16         |         |
+      +-----+-----------------+-------------------------+---------+
+      |  4  | Plate           | 300x300x4 aluminium     | 42.69€  |
+      |     |                 | plate                   |         |
+      +-----+-----------------+-------------------------+---------+
+      |  5  | Motor           | NEMA23 (ACT             | 21.60€  |
+      |     |                 | 23HS8430D8P1)           |         |
+      +-----+-----------------+-------------------------+---------+
+      |  6  | Driver          | ACT DM542               | 33.10€  |
+      +-----+-----------------+-------------------------+---------+
+      |  7  | Gears           | GT-2, 20 teeth gear and | 5.00€   |
+      |     |                 | idler                   |         |
+      +-----+-----------------+-------------------------+---------+
+      |  8  | Belt            | GT-2, 1m                | 4.99€   |
+      +-----+-----------------+-------------------------+---------+
+      |  9  | Power supply    | PEAKTECH 6227           | 123.17€ |
+      +-----+-----------------+-------------------------+---------+
+      | 10  | Microcontroller | NodeMCU ESP32-WROOM32   | 11.49€  |
+      +-----+-----------------+-------------------------+---------+
+      | -   | Misc.           | Attachment plates,      | 60.00€  |
+      |     |                 | screws, nuts, etc.      |         |
+      |     |                 | (price is an estimate)  |         |
+      +-----+-----------------+-------------------------+---------+
+      |     |                 | Total:                  | 396.90€ |
+      +-----+-----------------+-------------------------+---------+
+
+Frame and rails
+---------------
+
+The frame is made up of standard :math:`{30}\, \text{mm} \times {30}\, \text{mm}` I-Type aluminum extrusions. They make assembly and disassembly of the table very practical, and allow for flexibility in the design, since hardware components can be mounted anywhere the user desires. The plate is designed with different mounting holes for mounting a large variety of mock-up specimens. The plate is attached to the frame by two low-maintenance friction bearings and rails (igus drylinW). The frame has to be fixed to some object with high mass to avoid vibrations of the surroundings, e.g., it can be bolted to a rigid high-mass table.
+
+Motor and driver
+----------------
+
+The displacement is applied to the plate by a bipolar stepper motor through a belt-gear system. Bipolar stepper motors are made up of two sets of coils. By switching the current through the coils and, therefore, the polarity of the induced magnetic fields, the motor is forced to turn by one step. The motor driver is a specialized electronic circuit, which handles the necessary operations for the electrical current output to realize this careful switching. It acts as an interface between the controller and the motor.
+
+Under ideal circumstances, the position of a stepper motor is known at all times, and a feedback loop is not needed. The setup is thus cost-effective and overall simple. In addition, the driver is able to perform so-called microsteps which enable the motor to be set to positions that do not correspond to full steps. This is achieved by interpolating the coil current. Using microsteps enhances the resolution of the motor without changing the hardware components. It also increases the versatility of the setup.
+
+An important characteristic of the table is the number of steps
+:math:`n_{/disp}` that the motor performs for a given displacement,
+often taken as the number of steps per millimeter. This characteristic
+depends on the motor, the microstep setting and the hardware, i.e. the
+driving components. It can be calculated from the number of steps the
+motor performs per revolution and the displacement of the plate during
+one revolution of the motor as follows
+
+.. math::
+
+   n_{/disp} = \dfrac{\text{number of steps per motor revolution}}{\text{plate displacement per motor revolution}} .
+   %   \text{steps per mm} = \frac{\text{steps per revolution}}{\text{mm per revolution}},
+       \label{eq:StepsPerMM}
+
+The current setup uses a NEMA23 motor, where the coils are
+:math:`1.8^{\circ}` apart. The DM542-driver is set to a microstep
+setting of 32 microsteps between two coils, so 6,400 . The belt
+comprises a tooth every 2 mm, and the GT2 gear has 20 teeth in total, so
+the belt moves by :math:`40` . Therefore, the resolution of the Namazu
+setup with the features detailed here is :math:`n_{/disp}=160` steps per
+millimeter; one microstep corresponds to a displacement of
+:math:`{0.0063}\, \text{mm}`. This feature is directly set via a serial
+command to the motor without the need to reprogram the controller.
+
+For stepper motors, a trade-off has to be accepted between speed and
+available torque. More microsteps per revolution decrease the available
+torque and also slightly decrease the accuracy, since the driver needs
+to interpolate the coil current between two full steps. Indeed, with
+high speeds the driver has less time to switch the coil current between
+steps and the inertia of the payload and the table assembly can perturb
+the control. If the motor torque is not adequate for the applied loads,
+it can result in loss of steps and therefore loss of accuracy.
+Nevertheless, there are many different sizes of motors available with
+torque ratings ranging from as low as a few :math:`\text{Ncm}` (e.g.
+NEMA 11) to large motors capable of achieving a few tens of
+:math:`\text{Nm}` (e.g. NEMA 42). A similar comment can be made about
+the microstep setting. Another remedy is planetary gearboxes with
+different ratios available for various motors. The planetary gearboxes
+increase the resolution without the need for microsteps. The drawback is
+that the gearboxes usually introduce some backlash, and the ratios are
+not adjustable.
+
+Microcontroller
+---------------
+
+The microcontroller is the core element of the Namazu control
+structure. It is the interfacing element between the hardware (driver)
+and software, which sets the motor velocity and rotation direction as
+well as storing, starting and stopping of an experiment. A desired
+displacement signal can be uploaded to the controller via the serial
+interface. Once the experiment is started, the controller pulses the
+``STEP``-pin of the motor driver at a certain frequency that depends on
+the desired speed, which in turn is dependent on the desired
+displacement. These calculations are performed by the microcontroller
+and stored before the experiment. For each ``STEP``-pulse the motor
+turns by one step, i.e. changing the frequency of the pulse allows for
+the definition of arbitrary signals, which is the core functionality of
+Namazu.
+
+The compatibility of the microcontroller with the free real-time
+operating system (FreeRTOS) and the Arduino framework is mandatory to
+use the provided program. Further, we recommend a high-resolution
+hardware timer for the microcontroller such that the motor is controlled
+with high precision. The chosen microcontroller is an ESP32 devkit
+module. The processors’ clock rate of :math:`250\, \text{MHz}`
+empowers us to update the motors’ velocity and direction of rotation up
+to :math:`200` times per second. Moreover, the ESP32 provides a second
+core that can handle interrupts and provide a control interface, without
+interfering with the motor’s update rate. Thereby, we isolate the
+experiment from interfacing operations and improve the repeatability of
+experiments.
+
+Variants
+--------
+
+The Namazu shaking table that is presented here comprises various
+pieces, which could be upgraded/downgraded independently depending on
+the user’s budget and research needs. This makes the shaking-table
+tunable. Indeed, it can be personalized to fit desired accuracy or
+operational conditions. Some variants are exposed in
+`2 <#tab:Namazuvariants>`__. Note that variations in the hardware make
+it necessary to recalculate the steps per mm setting for the motor, as
+this property depends on the physical properties of the table as well as
+the microstep settings in the driver. As an example, changing the belt
+and gear assembly of the current setup to a :math:`1610` ball screw
+assembly (:math:`1610` referring to a screw diameter of
+:math:`{16}\, \text{mm}` and a screw lead of :math:`{10}\, \text{mm}`) means that
+the belt, and so the table, is moved by :math:`{10}\, \text{mm}` per
+revolution of the motor. Together with the :math:`200` steps per
+revolution of the motor this leads to a resolution of the shaking table
+of :math:`n_{/disp}` equal to :math:`20` steps per :math:`\text{mm}`.
+
+Most limitations on payload capacity, acceleration, and speed are only
+given by the hardware components. Here, tests have shown that the
+Namazu table with current components performs well with physical
+properties given in `[eq:PhysProp] <#eq:PhysProp>`__. The tested payload
+is :math:`{2}\, \text{kg}`. This small payload can fit some research
+projects. Besides, for teaching purposes, we find that using the table
+in combination with 3D-printed structures offers a versatile and
+low-cost solution to give students some experience with designing and
+testing parts. Indeed, 3D-printed structures, when printed with
+materials such as polylactic acid (PLA) or thermoplastic polyurethane
+(TPU), are cheep and lightweight. Therefore, a low-torque motor as
+introduced here can achieve already satisfying accuracy, with low cost
+hardware and simple handling of the Namazu framework. As a reference,
+the payload limitations on the SARSAR shaking table :footcite:p:`damci2019development` are given as
+:math:`{200}\, \text{kg}` capacity while also using a (more capable) stepper
+motor and a ball screw instead of the belt gear driving system.
+
+.. container:: center
+
+   .. container::
+      :name: tab:Namazuvariants
+
+      .. table:: Possible hardware variants.
+
+         +----------------------+----------------------+----------------------+
+         | **Original piece**   | **Upgraded piece**   | **Advantage**        |
+         +----------------------+----------------------+----------------------+
+         |                      |                      |                      |
+         +----------------------+----------------------+----------------------+
+         | Belt & gear assembly | Trapezoidal screw    | Higher accuracy and  |
+         |                      |                      | payload              |
+         |                      |                      | capabilities, more   |
+         |                      |                      | rigid construction   |
+         |                      |                      | due to no flexible   |
+         |                      |                      | parts, no            |
+         |                      |                      | inaccuracies due to  |
+         |                      |                      | belt slipping        |
+         +----------------------+----------------------+----------------------+
+         |                      | Ball screw           | Even higher accuracy |
+         |                      |                      | and payload          |
+         |                      |                      | capabilities,        |
+         |                      |                      | smoother operation   |
+         |                      |                      | than trapezoidal     |
+         |                      |                      | screws, no           |
+         |                      |                      | inaccuracies due to  |
+         |                      |                      | belt slipping        |
+         +----------------------+----------------------+----------------------+
+         |                      |                      |                      |
+         +----------------------+----------------------+----------------------+
+         | Friction bearings    | Roller bearings      | Higher payload       |
+         |                      | (SBR16UU etc.)       | capabilities         |
+         +----------------------+----------------------+----------------------+
+         |                      |                      |                      |
+         +----------------------+----------------------+----------------------+
+         | Frame                | Pre-built linear     | Higher manufacturing |
+         |                      | positioning table    | accuracy, multiple   |
+         |                      |                      | variants available   |
+         +----------------------+----------------------+----------------------+
+         |                      |                      |                      |
+         +----------------------+----------------------+----------------------+
+         | NEMA23 motor, DM542  | NEMA34 motor, DM860T | Higher torque,       |
+         | driver               | driver               | higher payload       |
+         +----------------------+----------------------+----------------------+
+
+The table can also be tuned to decrease the cost. A motor with a lower
+torque such as the NEMA17 motor could be employed. These motors are very
+common since they are a standard parts used in 3D printers. There exists
+a wide variety of motor and driver combinations, thus we can not provide
+a comprehensive list. `1 <#tab:PartsAndCosts>`__ shows that the highest
+cost in the setup comes from the power supply. We use here an adjustable
+power supply. It could be changed by a fixed voltage power supply to
+save cost.
+
+.. _hwInterface:
+
+----------------------
+**Hardware interface**
+----------------------
+
+.. warning::
+
+   These functionalities are currently under development and should be used with caution.
+
+We implemented an option to connect buttons and limit switches to the table. The buttons can be used to enhance the functionality as they provide a direct way of starting and stopping the experiments, as well as moving the table to a desired position and centering the table in the middle position. The limit switches provide an additional safety mechanism and are also necessary to center the table.
+
+----------
+References
+----------
+
+.. footbibliography::

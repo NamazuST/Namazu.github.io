@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Build instructions &#8212; Namazu 0.1 documentation</title>
+    <title>Bibliography &#8212; Namazu 0.1 documentation</title>
   
   
   
@@ -47,11 +47,10 @@
     <script src="_static/design-tabs.js?v=36754332"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'BuildInstructions';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'bibliography';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Mathematical Background" href="mathBackground.html" />
-    <link rel="prev" title="Usage" href="usage.html" />
+    <link rel="prev" title="API Reference" href="APIRef.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -154,8 +153,8 @@
                     </li>
                 
 
-                    <li class="nav-item current active">
-                      <a class="nav-link nav-internal" href="#">
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="BuildInstructions.html">
                         Build instructions
                       </a>
                     </li>
@@ -208,8 +207,8 @@
                     </li>
                 
 
-                    <li class="nav-item">
-                      <a class="nav-link dropdown-item nav-internal" href="bibliography.html">
+                    <li class="nav-item current active">
+                      <a class="nav-link dropdown-item nav-internal" href="#">
                         Bibliography
                       </a>
                     </li>
@@ -325,8 +324,8 @@ document.write(`
                     </li>
                 
 
-                    <li class="nav-item current active">
-                      <a class="nav-link nav-internal" href="#">
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="BuildInstructions.html">
                         Build instructions
                       </a>
                     </li>
@@ -379,8 +378,8 @@ document.write(`
                     </li>
                 
 
-                    <li class="nav-item">
-                      <a class="nav-link dropdown-item nav-internal" href="bibliography.html">
+                    <li class="nav-item current active">
+                      <a class="nav-link dropdown-item nav-internal" href="#">
                         Bibliography
                       </a>
                     </li>
@@ -461,7 +460,7 @@ document.write(`
         <i class="fa-solid fa-home"></i>
       </a>
     </li>
-    <li class="breadcrumb-item active" aria-current="page">Build instructions</li>
+    <li class="breadcrumb-item active" aria-current="page">Bibliography</li>
   </ul>
 </nav>
 </div>
@@ -478,132 +477,148 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section id="build-instructions">
-<h1>Build instructions<a class="headerlink" href="#build-instructions" title="Link to this heading">#</a></h1>
-<p>The present document shows the assembly of the table as it was put together in the IRTG/IRZ/IBNM-lab at the University of Hannover in June 2023. Note that the actual assembly of the frame might not be the most optimal, as it was observed that some parts of the frame could move and shift during operation. It might be possible to stiffen up the assembly by additional parts or by assembling the table in a  different way altogether. The present document provides only a suggestion of assembly.</p>
-<p>We kept the setup of all components (frame, motor, electronics) as general as possible, so that this framework should work with different setups. In our version we used a belt and gears together with a NEMA23 stepper motor to drive the table, but it should be possible to use other parts, i.e. other stepper motors or ball/trapezoidal screws for the driving mechanism. The <a class="reference internal" href="functionality.html"><span class="doc">software</span></a> works by controlling the stepping rate of the motor, so theoretically any stepper motor/controller should work (we tested this set up so far with a NEMA23 motor and a DM542 driver, as well as a NEMA17 with TMC2209 and A4988 driver).</p>
-<section id="assembly-of-the-table">
-<h2><strong>Assembly of the table</strong><a class="headerlink" href="#assembly-of-the-table" title="Link to this heading">#</a></h2>
-<p>This section describes the assembly of the table. For further details and explanations on hardware components please see the <a class="reference internal" href="hardware.html"><span class="doc">Hardware</span></a> section, for software the <a class="reference internal" href="functionality.html"><span class="doc">Software</span></a> section and for a quick overview the <a class="reference internal" href="usage.html"><span class="doc">Usage</span></a> section.</p>
-<section id="assembly-of-the-frame">
-<h3><strong>Assembly of the frame</strong><a class="headerlink" href="#assembly-of-the-frame" title="Link to this heading">#</a></h3>
-<p>The frame consists of the aluminium extrusions, screws with T-nuts, 90° angles and connector plates. We used two of the 400mm parts as supports for the rails and an assembly of one 300mm and one 400mm part as stands, as shown <a class="reference internal" href="#fig-frameassembly1"><span class="std std-ref">here</span></a>. Leave eight empty threaded sockets on each side (2 outer sides and 2 upwards sides) in between the fix of the 300mm and 400mm frame parts, these threads are later used for the e-motor and the gear of the v-belt. The height of the frame itself is therefore 90 mm, which is actually needed since the motor is somewhat tall. A downside of this assembly is that there is no cross-bracing, meaning the assembly can shift a bit. Furthermore, it is somewhat hard to actually line up the rails correctly such that they are parallel, which can lead to excess friction and vibrations. So far we did not come up with a good solution here.</p>
-<figure class="align-default" id="fig-frameassembly1" style="width: 60%">
-<img alt="_images/ShakingTable-Frame5.jpg" src="_images/ShakingTable-Frame5.jpg" />
-</figure>
-<p>The two 400mm parts are screwed in to the top of the stands using the 90° angles. It might be a good idea to also screw down the inner parts of these with 90° angles for more rigidity. Note however that adjusting the rails later on is then difficult since the plate will be in the way.</p>
-<figure class="align-default" style="width: 60%">
-<img alt="_images/ShakingTable-Frame4.jpg" src="_images/ShakingTable-Frame4.jpg" />
-</figure>
-<figure class="align-default" style="width: 60%">
-<img alt="_images/ShakingTable-Frame3.jpg" src="_images/ShakingTable-Frame3.jpg" />
-</figure>
-<figure class="align-default" style="width: 60%">
-<img alt="_images/ShakingTable-Frame2.jpg" src="_images/ShakingTable-Frame2.jpg" />
-</figure>
-<figure class="align-default" style="width: 60%">
-<img alt="_images/ShakingTable-Frame1.jpg" src="_images/ShakingTable-Frame1.jpg" />
-</figure>
-<p>The rails can be screwed in on top of the frame using the M4x12 screws and the 3D-printed washers. I forgot to take pictures of the assembly with only the rails installed..</p>
-<figure class="align-default" id="id1" style="width: 60%">
-<img alt="_images/ShakingTable-RailScrew.jpg" src="_images/ShakingTable-RailScrew.jpg" />
-<figcaption>
-<p><span class="caption-text">Screws with washers for the rails</span><a class="headerlink" href="#id1" title="Link to this image">#</a></p>
-</figcaption>
-</figure>
-</section>
-<section id="assembly-of-the-motor">
-<h3><strong>Assembly of the motor</strong><a class="headerlink" href="#assembly-of-the-motor" title="Link to this heading">#</a></h3>
-<p>The motor attachment assembly consists of two 70 mm aluminium extrusions, four 90° angles and the NEMA23 attachment bracket. The bracket is screwed into the extrusions with four screws and attached to the frame using the angles as shown in the pictures.</p>
-<figure class="align-default" style="width: 60%">
-<img alt="_images/ShakingTable-MotorAssembly2.jpg" src="_images/ShakingTable-MotorAssembly2.jpg" />
-</figure>
-<figure class="align-default" style="width: 60%">
-<img alt="_images/ShakingTable-MotorAssembly.jpg" src="_images/ShakingTable-MotorAssembly.jpg" />
-</figure>
-<figure class="align-default" style="width: 60%">
-<img alt="_images/ShakingTable-Motor1.jpg" src="_images/ShakingTable-Motor1.jpg" />
-</figure>
-</section>
-<section id="assembly-of-the-belt-tensioner">
-<h3><strong>Assembly of the belt tensioner</strong><a class="headerlink" href="#assembly-of-the-belt-tensioner" title="Link to this heading">#</a></h3>
-<p>This assembly is used to tension the belt (as the name suggests). It consists of two 70mm aluminium extrusions, a connector plate, angles and the 3D-printed tensioner itself. The two extrusions are connected with the connector plate and screwed in on the short side with a 90° angle. For rigidity reasons we used another angle to screw it in the top part of the frame stand (see <a class="reference internal" href="#fig-tensionerassembly5"><span class="std std-ref">here</span></a>). The 3D-printed part should slide on top of the extrusions and can be attached with T-nuts and M4x12 screws from the sides (see <a class="reference internal" href="#fig-tensionerassembly4"><span class="std std-ref">here</span></a>).</p>
-<figure class="align-default" style="width: 60%">
-<img alt="_images/ShakingTable-TensionerAssembly5.jpg" src="_images/ShakingTable-TensionerAssembly5.jpg" />
-</figure>
-<figure class="align-default" style="width: 60%">
-<img alt="_images/ShakingTable-TensionerAssembly4.jpg" src="_images/ShakingTable-TensionerAssembly4.jpg" />
-</figure>
-<figure class="align-default" style="width: 60%">
-<img alt="_images/ShakingTable-TensionerAssembly.jpg" src="_images/ShakingTable-TensionerAssembly.jpg" />
-</figure>
-<figure class="align-default" id="fig-tensionerassembly4" style="width: 60%">
-<img alt="_images/ShakingTable-TensionerAssembly3.jpg" src="_images/ShakingTable-TensionerAssembly3.jpg" />
-</figure>
-<figure class="align-default" id="fig-tensionerassembly5" style="width: 60%">
-<img alt="_images/ShakingTable-TensionerAssembly2.jpg" src="_images/ShakingTable-TensionerAssembly2.jpg" />
-</figure>
-</section>
-<section id="belt">
-<h3><strong>Belt</strong><a class="headerlink" href="#belt" title="Link to this heading">#</a></h3>
-<p>The 3D-printed belt holders are screwed into the plate using M4x12 screws and nuts. The belt can then be inserted into these and fastened with M3 screws from the side. Note that in order to screw in these screws, there are M3-nuts on the inside with a small recess so they don’t turn while turning the screw. If the screw is pushed too much they can jump out of this recess and it is not possible to fasten the belt. Just pull on the screw a bit until the nut is recessed again if that happens. It is also difficult to reach these screws while the plate is attached to the rails, so either use a very long or very short screwdriver or measure the needed belt length, detach the plate and then attach the belt. Loosen the two small screws on the tensioner (don’t remove them, they are used to hold the tensioner-plate in place), then loosen the two long screws to move the tensioner-plate as much forward as possible. Attach the belt to the motor gear and the gear on the tensioner, then tighten the belt using the two long screws. When the belt is tight enough, screw the tensioner-plate down with the two smaller screws. This whole assembly would of course work better if made out of metal, since it being plastic means that it can bend under the tension.</p>
-<figure class="align-default" style="width: 60%">
-<img alt="_images/ShakingTable-Fastener.jpg" src="_images/ShakingTable-Fastener.jpg" />
-</figure>
-<figure class="align-default" style="width: 60%">
-<img alt="_images/ShakingTable-Fastener2.jpg" src="_images/ShakingTable-Fastener2.jpg" />
-</figure>
-<figure class="align-default" style="width: 60%">
-<img alt="_images/ShakingTable-Fastener3.jpg" src="_images/ShakingTable-Fastener3.jpg" />
-</figure>
-<figure class="align-default" style="width: 60%">
-<img alt="_images/ShakingTable-Tensioner3.jpg" src="_images/ShakingTable-Tensioner3.jpg" />
-</figure>
-<figure class="align-default" style="width: 60%">
-<img alt="_images/ShakingTable-Tensioner2.jpg" src="_images/ShakingTable-Tensioner2.jpg" />
-</figure>
-<figure class="align-default" style="width: 60%">
-<img alt="_images/ShakingTable-Tensioner1.jpg" src="_images/ShakingTable-Tensioner1.jpg" />
-</figure>
-</section>
-<section id="complete-table">
-<h3><strong>Complete table</strong><a class="headerlink" href="#complete-table" title="Link to this heading">#</a></h3>
-<figure class="align-default" style="width: 60%">
-<img alt="_images/ShakingTable-AssemblyTop.jpg" src="_images/ShakingTable-AssemblyTop.jpg" />
-</figure>
-<figure class="align-default" style="width: 60%">
-<img alt="_images/ShakingTable-AssemblyFront.jpg" src="_images/ShakingTable-AssemblyFront.jpg" />
-</figure>
-<figure class="align-default" style="width: 60%">
-<img alt="_images/ShakingTable-AssemblySide.jpg" src="_images/ShakingTable-AssemblySide.jpg" />
-</figure>
-<figure class="align-default" style="width: 60%">
-<img alt="_images/ShakingTable-AssemblySide2.jpg" src="_images/ShakingTable-AssemblySide2.jpg" />
-</figure>
-</section>
-</section>
-<section id="assembly-of-the-electronics">
-<h2><strong>Assembly of the electronics</strong><a class="headerlink" href="#assembly-of-the-electronics" title="Link to this heading">#</a></h2>
-<p>The micro controller, driver and motor need to be connected in a specific way to operate properly. The DM542-driver has inputs for <code class="docutils literal notranslate"><span class="pre">DIR</span></code> and <code class="docutils literal notranslate"><span class="pre">STEP</span></code> signals which need to be connected to the micro controller, outputs to the motor and it also needs to be connected to the power supply. The <code class="docutils literal notranslate"><span class="pre">DIR-</span></code> and <code class="docutils literal notranslate"><span class="pre">PUL-</span></code> inputs need to be connected to <code class="docutils literal notranslate"><span class="pre">GND</span></code> (0 V), <code class="docutils literal notranslate"><span class="pre">DIR+</span></code> and <code class="docutils literal notranslate"><span class="pre">STEP+</span></code> are connected to pins <code class="docutils literal notranslate"><span class="pre">G4</span></code> and <code class="docutils literal notranslate"><span class="pre">G23</span></code> respectively. This could be changed in the ESP32-software if desired, but that includes re-flashing the software onto the controller. The motor is connected to the NEMA23 according to <a class="reference internal" href="#fig-wiringstepperdriver"><span class="std std-ref">this</span></a>, where the colors of the leads of the  motor are indicated (<code class="docutils literal notranslate"><span class="pre">B-</span></code> - blue, <code class="docutils literal notranslate"><span class="pre">B+</span></code> - red, <code class="docutils literal notranslate"><span class="pre">A-</span></code> - green, <code class="docutils literal notranslate"><span class="pre">A+</span></code> - black). The power supply is directly connected to the driver, where the red connector is <code class="docutils literal notranslate"><span class="pre">V+</span></code> and the blue connector is <code class="docutils literal notranslate"><span class="pre">GND</span></code>.</p>
-<figure class="align-default" id="id2">
-<span id="fig-wiringstepperdriver"></span><a class="reference internal image-reference" href="_images/ESP_Driver_Motor.png"><img alt="_images/ESP_Driver_Motor.png" src="_images/ESP_Driver_Motor.png" style="width: 719.0px; height: 469.0px;" /></a>
-<figcaption>
-<p><span class="caption-text">Wiring of ESP32, NEMA23 and DM542</span><a class="headerlink" href="#id2" title="Link to this image">#</a></p>
-</figcaption>
-</figure>
-<figure class="align-default" id="id3" style="width: 60%">
-<img alt="_images/ShakingTable-DriverSettings.jpg" src="_images/ShakingTable-DriverSettings.jpg" />
-<figcaption>
-<p><span class="caption-text">Stepper driver settings</span><a class="headerlink" href="#id3" title="Link to this image">#</a></p>
-</figcaption>
-</figure>
-<figure class="align-default" id="id4" style="width: 60%">
-<img alt="_images/ShakingTable-DriverSettingsClose.jpg" src="_images/ShakingTable-DriverSettingsClose.jpg" />
-<figcaption>
-<p><span class="caption-text">Stepper driver settings (close up)</span><a class="headerlink" href="#id4" title="Link to this image">#</a></p>
-</figcaption>
-</figure>
-</section>
+  <section id="bibliography">
+<h1>Bibliography<a class="headerlink" href="#bibliography" title="Link to this heading">#</a></h1>
+<div class="docutils container" id="id1">
+<div role="list" class="citation-list">
+<div class="citation" id="id23" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></span>
+<p>Christoph Adam. Dynamics of elastic–plastic shear frames with secondary structures: shake table and numerical studies. <em>Earthquake engineering &amp; structural dynamics</em>, 30(2):257–277, 2001.</p>
+</div>
+<div class="citation" id="id9" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></span>
+<p>Yongtao Bai, Yinsheng Li, Zhenyun Tang, Marius Bittner, Matteo Broggi, and Michael Beer. Seismic collapse fragility of low-rise steel moment frames with mass irregularity based on shaking table test. <em>Bulletin of Earthquake Engineering</em>, 19:2457–2482, 04 2021. URL: <a class="reference external" href="https://doi.org/10.1007/s10518-021-01076-2">https://doi.org/10.1007/s10518-021-01076-2</a>, <a class="reference external" href="https://doi.org/10.1007/s10518-021-01076-2">doi:10.1007/s10518-021-01076-2</a>.</p>
+</div>
+<div class="citation" id="id15" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>3<span class="fn-bracket">]</span></span>
+<p>Chiara Bedon, Enrico Bergamo, Matteo Izzi, and Salvatore Noè. Prototyping and validation of mems accelerometers for structural health monitoring—the case study of the pietratagliata cable-stayed bridge. <em>Journal of Sensor and Actuator Networks</em>, 7(3):30, 2018.</p>
+</div>
+<div class="citation" id="id28" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>4<span class="fn-bracket">]</span></span>
+<p>Marco Behrendt, Masaru Kitahara, Takeshi Kitahara, Liam Comerford, and Michael Beer. Data-driven reliability assessment of dynamic structures based on power spectrum classification. <em>Engineering Structures</em>, 268:114648, 2022. URL: <a class="reference external" href="https://www.sciencedirect.com/science/article/pii/S0141029622007453">https://www.sciencedirect.com/science/article/pii/S0141029622007453</a>, <a class="reference external" href="https://doi.org/https://doi.org/10.1016/j.engstruct.2022.114648">doi:https://doi.org/10.1016/j.engstruct.2022.114648</a>.</p>
+</div>
+<div class="citation" id="id11" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>5<span class="fn-bracket">]</span></span>
+<p>Nicoletta Bianchini, Nuno Mendes, Chiara Calderini, Paulo Candeias, Michela Rossi, and Paulo Lourenco. Seismic response of a small-scale masonry cross vault: experimental investigation by performing quasi-static and shake table tests. 01 2021. <a class="reference external" href="https://doi.org/10.21203/rs.3.rs-188815/v1">doi:10.21203/rs.3.rs-188815/v1</a>.</p>
+</div>
+<div class="citation" id="id24" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>6<span class="fn-bracket">]</span></span>
+<p>Nicoletta Bianchini, Nuno Mendes, Chiara Calderini, Paulo XAVIER Candeias, Michela Rossi, and Paulo B Lourenço. Seismic response of a small-scale masonry groin vault: experimental investigation by performing quasi-static and shake table tests. <em>Bulletin of Earthquake Engineering</em>, 20(3):1739–1765, 2022.</p>
+</div>
+<div class="citation" id="id8" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>7<span class="fn-bracket">]</span></span>
+<p>Ching-Yuan Chang and Chi-Wen Huang. Non-contact measurement of inter-story drift in three-layer rc structure under seismic vibration using digital image correlation. <em>Mechanical Systems and Signal Processing</em>, 136:106500, 2020.</p>
+</div>
+<div class="citation" id="id30" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>8<span class="fn-bracket">]</span></span>
+<p>Jianbing Chen, Fan Kong, and Yongbo Peng. A stochastic harmonic function representation for non-stationary stochastic processes. <em>Mechanical Systems and Signal Processing</em>, 96:31–44, 2017. URL: <a class="reference external" href="https://www.sciencedirect.com/science/article/pii/S0888327017301784">https://www.sciencedirect.com/science/article/pii/S0888327017301784</a>, <a class="reference external" href="https://doi.org/https://doi.org/10.1016/j.ymssp.2017.03.048">doi:https://doi.org/10.1016/j.ymssp.2017.03.048</a>.</p>
+</div>
+<div class="citation" id="id21" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>9<span class="fn-bracket">]</span></span>
+<p>Jun Chen, Xin Chen, Wei Liu, and others. Complete inverse method using ant colony optimization algorithm for structural parameters and excitation identification from output only measurements. <em>Mathematical Problems in Engineering</em>, 2014.</p>
+</div>
+<div class="citation" id="id27" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>10<span class="fn-bracket">]</span></span>
+<p>Zhiang Chen, Devin Keating, Yash Shethwala, Aravind Adhith Pandian Saravanakumaran, Ramon Arrowsmith, Albert Kottke, Christine Wittich, and Jnaneshwar Das. Shakebot: a low-cost, open-source robotic shake table for earthquake research and education. 2023. <a class="reference external" href="https://arxiv.org/abs/2212.10763">arXiv:2212.10763</a>.</p>
+</div>
+<div class="citation" id="id35" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>11<span class="fn-bracket">]</span></span>
+<p>A.K. Chopra. <em>Dynamics of Structures</em>. Pearson, Great Britain, 2007.</p>
+</div>
+<div class="citation" id="id26" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>12<span class="fn-bracket">]</span></span>
+<p>E Damcı and Çagla Şekerci. Development of a low-cost single-axis shake table based on arduino. <em>Experimental Techniques</em>, 43(2):179–198, 2019.</p>
+</div>
+<div class="citation" id="id2" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>13<span class="fn-bracket">]</span></span>
+<p>John-Eric Dufour, Benoît Beaubier, François Hild, and Stéphane Roux. Cad-based displacement measurements with stereo-dic. <em>Experimental Mechanics</em>, 55(9):1657–1668, 2015.</p>
+</div>
+<div class="citation" id="id34" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>14<span class="fn-bracket">]</span></span>
+<p>Jan Grashorn, Marius Bittner, and Marvin Banse. Namazust/namazu: prerelease. January 2024. URL: <a class="reference external" href="https://doi.org/10.5281/zenodo.10533796">https://doi.org/10.5281/zenodo.10533796</a>.</p>
+</div>
+<div class="citation" id="id32" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>15<span class="fn-bracket">]</span></span>
+<p>Toshihiko Horiuchi, Makoto Ohsaki, Masahiro Kurata, Julio A. Ramirez, Takuzo Yamashita, and Koichi Kajiwara. Contributions of e-defense shaking table to earthquake engineering and its future. <em>Journal of Disaster Research</em>, 17(6):985–999, 2022. <a class="reference external" href="https://doi.org/10.20965/jdr.2022.p0985">doi:10.20965/jdr.2022.p0985</a>.</p>
+</div>
+<div class="citation" id="id33" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>16<span class="fn-bracket">]</span></span>
+<p>Zifeng Huang and You-Lin Xu. A multi-taper s-transform method for spectral estimation of stationary processes. <em>IEEE Transactions on Signal Processing</em>, 69():1452–1467, 2021. <a class="reference external" href="https://doi.org/10.1109/TSP.2021.3057488">doi:10.1109/TSP.2021.3057488</a>.</p>
+</div>
+<div class="citation" id="id31" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>17<span class="fn-bracket">]</span></span>
+<p>The MathWorks Inc. Matlab version: 9.14.0.2254940 (r2023a) update 2. 2023. URL: <a class="reference external" href="https://www.mathworks.com">https://www.mathworks.com</a>.</p>
+</div>
+<div class="citation" id="id14" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>18<span class="fn-bracket">]</span></span>
+<p>Hang Jing, Huifang Chen, Jinping Yang, and Peizhen Li. Shaking table tests on a small-scale steel cylindrical silo model in different filling conditions. In <em>Structures</em>, volume 37, 698–708. Elsevier, 2022.</p>
+</div>
+<div class="citation" id="id3" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>19<span class="fn-bracket">]</span></span>
+<p>Jie Li and Jianbing Chen. <em>Stochastic Dynamics of Structures</em>. John Wiley &amp; Sons, Ltd (Asia), United States, 1 edition, 2010. URL: <a class="reference external" href="https://www.wiley.com/en-us/Stochastic+Dynamics+of+Structures-p-9780470824252">https://www.wiley.com/en-us/Stochastic+Dynamics+of+Structures-p-9780470824252</a>.</p>
+</div>
+<div class="citation" id="id6" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>20<span class="fn-bracket">]</span></span>
+<p>Shuoyu Liu, Liuliu Peng, Jun Liu, Shuang Zhao, and Zhongming Jiang. Spectral representation-based efficient simulation method for fully non-stationary spatially varying ground motions. <em>Soil Dynamics and Earthquake Engineering</em>, 161:107436, 2022. URL: <a class="reference external" href="https://www.sciencedirect.com/science/article/pii/S0267726122002858">https://www.sciencedirect.com/science/article/pii/S0267726122002858</a>, <a class="reference external" href="https://doi.org/https://doi.org/10.1016/j.soildyn.2022.107436">doi:https://doi.org/10.1016/j.soildyn.2022.107436</a>.</p>
+</div>
+<div class="citation" id="id7" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>21<span class="fn-bracket">]</span></span>
+<p>Meng-Ze Lyu, Jian-Bing Chen, and Jia-Xu Shen. Refined probabilistic response and seismic reliability evaluation of high-rise reinforced concrete structures via physically driven dimension-reduced probability density evolution equation. <em>Acta Mechanica</em>, pages 1619–6937, 2023. URL: <a class="reference external" href="https://www.sciencedirect.com/science/article/pii/S0267726122002858">https://www.sciencedirect.com/science/article/pii/S0267726122002858</a>, <a class="reference external" href="https://doi.org/https://doi.org/10.1007/s00707-023-03666-4">doi:https://doi.org/10.1007/s00707-023-03666-4</a>.</p>
+</div>
+<div class="citation" id="id16" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>22<span class="fn-bracket">]</span></span>
+<p>Masayoshi Nakashima, Takuya Nagae, Ryuta Enokida, and Koichi Kajiwara. Experiences, accomplishments, lessons, and challenges of e-defense—tests using world's largest shaking table. <em>Japan Architectural Review</em>, 1(1):4–17, 2018.</p>
+</div>
+<div class="citation" id="id29" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>23<span class="fn-bracket">]</span></span>
+<p>David Edward Newland. <em>An introduction to random vibrations, spectral &amp; wavelet analysis</em>. Dover Publication, United States, 2012.</p>
+</div>
+<div class="citation" id="id19" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>24<span class="fn-bracket">]</span></span>
+<p>Byung Kwan Oh, Doyoung Kim, and Hyo Seon Park. Modal response-based visual system identification and model updating methods for building structures. <em>Computer-Aided Civil and Infrastructure Engineering</em>, 32(1):34–56, 2017.</p>
+</div>
+<div class="citation" id="id17" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>25<span class="fn-bracket">]</span></span>
+<p>Min Jae Park, Gain Cheon, Robel Wondimu Alemayehu, and Young K Ju. Seismic performance of f3d free-form structures using small-scale shaking table tests. <em>Materials</em>, 15(8):2868, 2022.</p>
+</div>
+<div class="citation" id="id5" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>26<span class="fn-bracket">]</span></span>
+<p>M Shinozuka and G Deodatis. Response variability of stochastic finite element systems. <em>Journal of Engineering Mechanics</em>, 114(3):499–519, 1988.</p>
+</div>
+<div class="citation" id="id4" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>27<span class="fn-bracket">]</span></span>
+<p>Masanobu Shinozuka and George Deodatis. Simulation of stochastic processes by spectral representation. <em>Applied Mechanics Reviews</em>, 44(4):191–204, 1991. <a class="reference external" href="https://doi.org/10.1115/1.3119501">doi:10.1115/1.3119501</a>.</p>
+</div>
+<div class="citation" id="id20" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>28<span class="fn-bracket">]</span></span>
+<p>Tarunpreet Singh, Shankar Sehgal, Chander Prakash, and Saurav Dixit. Real-time structural health monitoring and damage identification using frequency response functions along with finite element model updating technique. <em>Sensors</em>, 22(12):4546, 2022.</p>
+</div>
+<div class="citation" id="id10" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>29<span class="fn-bracket">]</span></span>
+<p>Lianjin Tao, Peng Ding, Cheng Shi, Xiaowa Wu, Shang Wu, and Sicheng Li. Shaking table test on seismic response characteristics of prefabricated subway station structure. <em>Tunnelling and Underground Space Technology</em>, 91:102994, 2019.</p>
+</div>
+<div class="citation" id="id22" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>30<span class="fn-bracket">]</span></span>
+<p>Dansheng Wang, Wei Xiang, Peng Zeng, and Hongping Zhu. Damage identification in shear-type structures using a proper orthogonal decomposition approach. <em>Journal of Sound and Vibration</em>, 355:135–149, 2015.</p>
+</div>
+<div class="citation" id="id13" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>31<span class="fn-bracket">]</span></span>
+<p>Zubair Rashid Wani, Manzoor Tantray, and Ehsan Noroozinejad Farsangi. In-plane measurements using a novel streamed digital image correlation for shake table test of steel structures controlled with mr dampers. <em>Engineering Structures</em>, 256:113998, 2022.</p>
+</div>
+<div class="citation" id="id18" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>32<span class="fn-bracket">]</span></span>
+<p>Yan Yu, Ruicong Han, Xuefeng Zhao, Xingquan Mao, Weitong Hu, Dong Jiao, Mingchu Li, and Jinping Ou. Initial validation of mobile-structural health monitoring method using smartphones. <em>International Journal of Distributed Sensor Networks</em>, 11(2):274391, 2015.</p>
+</div>
+<div class="citation" id="id25" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>33<span class="fn-bracket">]</span></span>
+<p>Chiyun Zhong and Constantin Christopoulos. Scaled shaking table testing of higher-mode effects on the seismic response of tall and slender structures. <em>Earthquake Engineering &amp; Structural Dynamics</em>, 52(3):549–570, 2023.</p>
+</div>
+<div class="citation" id="id12" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>34<span class="fn-bracket">]</span></span>
+<p>Lianxu Zhou, Xiaowei Wang, and Aijun Ye. Shake table test on transverse steel damper seismic system for long span cable-stayed bridges. <em>Engineering Structures</em>, 179:106–119, 2019.</p>
+</div>
+</div>
+</div>
 </section>
 
 
@@ -617,22 +632,13 @@ document.write(`
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="usage.html"
+       href="APIRef.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Usage</p>
+        <p class="prev-next-title">API Reference</p>
       </div>
-    </a>
-    <a class="right-next"
-       href="mathBackground.html"
-       title="next page">
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Mathematical Background</p>
-      </div>
-      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div>
                 </footer>
@@ -645,29 +651,9 @@ document.write(`
 
 
   <div class="sidebar-secondary-item">
-<div
-    id="pst-page-navigation-heading-2"
-    class="page-toc tocsection onthispage">
-    <i class="fa-solid fa-list"></i> On this page
-  </div>
-  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
-    <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#assembly-of-the-table"><strong>Assembly of the table</strong></a><ul class="visible nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#assembly-of-the-frame"><strong>Assembly of the frame</strong></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#assembly-of-the-motor"><strong>Assembly of the motor</strong></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#assembly-of-the-belt-tensioner"><strong>Assembly of the belt tensioner</strong></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#belt"><strong>Belt</strong></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#complete-table"><strong>Complete table</strong></a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#assembly-of-the-electronics"><strong>Assembly of the electronics</strong></a></li>
-</ul>
-  </nav></div>
-
-  <div class="sidebar-secondary-item">
 
   <div class="tocsection sourcelink">
-    <a href="_sources/BuildInstructions.rst.txt">
+    <a href="_sources/bibliography.rst.txt">
       <i class="fa-solid fa-file-lines"></i> Show Source
     </a>
   </div>

@@ -1,0 +1,933 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Hardware &#8212; Namazu 0.1 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=bd9e20870c6007c4c509" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=bd9e20870c6007c4c509" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=bd9e20870c6007c4c509" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=bd9e20870c6007c4c509" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=bd9e20870c6007c4c509" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=bd9e20870c6007c4c509" />
+  <script src="_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=bd9e20870c6007c4c509"></script>
+
+    <script src="_static/documentation_options.js?v=2709fde1"></script>
+    <script src="_static/doctools.js?v=888ff710"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script src="_static/design-tabs.js?v=36754332"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'hardware';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Functionality" href="functionality.html" />
+    <link rel="prev" title="Mathematical Background" href="mathBackground.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <header>
+  
+    <div class="bd-header navbar navbar-expand-lg bd-navbar">
+<div class="bd-header__inner bd-page-width">
+  <label class="sidebar-toggle primary-toggle" for="__primary">
+    <span class="fa-solid fa-bars"></span>
+  </label>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/LogoSmall.png" class="logo__image only-light" alt="Namazu 0.1 documentation - Home"/>
+    <script>document.write(`<img src="_static/LogoSmall.png" class="logo__image only-dark" alt="Namazu 0.1 documentation - Home"/>`);</script>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav class="navbar-nav">
+  <ul class="bd-navbar-elements navbar-nav">
+    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="usage.html">
+                        Usage
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="BuildInstructions.html">
+                        Build instructions
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="mathBackground.html">
+                        Mathematical Background
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="#">
+                        Hardware
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="functionality.html">
+                        Functionality
+                      </a>
+                    </li>
+                
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+                    <li class="nav-item">
+                      <a class="nav-link dropdown-item nav-internal" href="microcontroller.html">
+                        Microcontroller
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link dropdown-item nav-internal" href="misc.html">
+                        Miscellaneous
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link dropdown-item nav-internal" href="APIRef.html">
+                        API Reference
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link dropdown-item nav-internal" href="bibliography.html">
+                        Bibliography
+                      </a>
+                    </li>
+                
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links navbar-nav"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/ShakingTable/shakingtable.github.io" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fab fa-github-square fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+    </div>
+  
+
+  
+    <label class="sidebar-toggle secondary-toggle" for="__secondary" tabindex="0">
+      <span class="fa-solid fa-outdent"></span>
+    </label>
+  
+</div>
+
+    </div>
+  
+  </header>
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar hide-on-wide">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          <div class="navbar-item">
+<nav class="navbar-nav">
+  <ul class="bd-navbar-elements navbar-nav">
+    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="usage.html">
+                        Usage
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="BuildInstructions.html">
+                        Build instructions
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="mathBackground.html">
+                        Mathematical Background
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="#">
+                        Hardware
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="functionality.html">
+                        Functionality
+                      </a>
+                    </li>
+                
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-controls="pst-nav-more-links-2">
+                    More
+                </button>
+                <ul id="pst-nav-more-links-2" class="dropdown-menu">
+                    
+                    <li class="nav-item">
+                      <a class="nav-link dropdown-item nav-internal" href="microcontroller.html">
+                        Microcontroller
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link dropdown-item nav-internal" href="misc.html">
+                        Miscellaneous
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link dropdown-item nav-internal" href="APIRef.html">
+                        API Reference
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link dropdown-item nav-internal" href="bibliography.html">
+                        Bibliography
+                      </a>
+                    </li>
+                
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links navbar-nav"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/ShakingTable/shakingtable.github.io" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fab fa-github-square fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+
+
+<nav aria-label="Breadcrumb">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    <li class="breadcrumb-item active" aria-current="page">Hardware</li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="hardware">
+<h1>Hardware<a class="headerlink" href="#hardware" title="Link to this heading">#</a></h1>
+<p>A 3D-rendering of the table can be seen <a class="reference internal" href="#fig-3drendering"><span class="std std-ref">below</span></a>.
+The basic hardware components of the shaking table are an aluminum
+frame, linear rails, linear bearings, the plate, the motor with its
+driver and the driving assembly, as well as the necessary electrical
+components. Each component is described in this section and some details
+on their functionality are given. Since different choices can be made
+for each part we also give some comments about possible variants.</p>
+<figure class="align-default" id="fig-3drendering">
+<img alt="_images/3dtable_annotations.png" src="_images/3dtable_annotations.png" />
+<figcaption>
+<p><span class="caption-text">3D rendering of the table CAD files.</span><a class="headerlink" href="#fig-3drendering" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p>A technical drawing with dimensions is shown <a class="reference internal" href="#fig-techdraw"><span class="std std-ref">below</span></a>.
+The mass of the table is <span class="math notranslate nohighlight">\({6.80}\, \text{kg}\)</span>. Its footprint is about
+<span class="math notranslate nohighlight">\({400}\, \text{mm}\times {500}\, \text{mm}\)</span> and it takes one person about
+one hour to fully assemble it. <a class="reference internal" href="#tab-partsandcosts"><span class="std std-ref">This table</span></a> gives a list
+of hardware components and the associated costs. Tested properties obtained with Namazu
+are:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\label{eq:PhysProp}
+    \begin{split}
+        \text{Tested payload:} \hspace{1cm} &amp;{2}\, \text{kg},\\
+        \text{Maximum acceleration with payload:} \hspace{1cm} &amp;2\, g,\\
+        \text{Maximum speed with payload:} \hspace{1cm}&amp;{0.4}\, {\text{m/s}}.
+    \end{split}\end{split}\]</div>
+<figure class="align-default" id="fig-techdraw">
+<img alt="_images/technicalDrawing.png" src="_images/technicalDrawing.png" />
+<figcaption>
+<p><span class="caption-text">Technical drawing of the table, dimensions in millimeters.</span><a class="headerlink" href="#fig-techdraw" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<div class="docutils container" id="tab-partsandcosts">
+<table class="table" id="id3">
+<caption><span class="caption-text">Costs of shaking table hardware (in 2022-2023, Germany), note that the costs are highly dependent on availability of the components. The cable and tools used for assembly are not mentioned here.</span><a class="headerlink" href="#id3" title="Link to this table">#</a></caption>
+<thead>
+<tr class="row-odd"><th class="head"><p>Nr.</p></th>
+<th class="head"><p>Hardware</p></th>
+<th class="head"><p>Description</p></th>
+<th class="head"><p>Price</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>Frame</p></td>
+<td><p>30x30 I-Type aluminium
+extrusions (4x 400 mm,
+2x 300 mm, 4x 70 mm)</p></td>
+<td><p>21.64€</p></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p>Linear rails</p></td>
+<td><p>igus drylin W,
+WS16_0.4M</p></td>
+<td><p>31.74€</p></td>
+</tr>
+<tr class="row-even"><td><p>3</p></td>
+<td><p>Linear bearings</p></td>
+<td><p>igus drylin W,
+WJ2000UME-01-16</p></td>
+<td><p>41.48€</p></td>
+</tr>
+<tr class="row-odd"><td><p>4</p></td>
+<td><p>Plate</p></td>
+<td><p>300x300x4 aluminium
+plate</p></td>
+<td><p>42.69€</p></td>
+</tr>
+<tr class="row-even"><td><p>5</p></td>
+<td><p>Motor</p></td>
+<td><p>NEMA23 (ACT
+23HS8430D8P1)</p></td>
+<td><p>21.60€</p></td>
+</tr>
+<tr class="row-odd"><td><p>6</p></td>
+<td><p>Driver</p></td>
+<td><p>ACT DM542</p></td>
+<td><p>33.10€</p></td>
+</tr>
+<tr class="row-even"><td><p>7</p></td>
+<td><p>Gears</p></td>
+<td><p>GT-2, 20 teeth gear and
+idler</p></td>
+<td><p>5.00€</p></td>
+</tr>
+<tr class="row-odd"><td><p>8</p></td>
+<td><p>Belt</p></td>
+<td><p>GT-2, 1m</p></td>
+<td><p>4.99€</p></td>
+</tr>
+<tr class="row-even"><td><p>9</p></td>
+<td><p>Power supply</p></td>
+<td><p>PEAKTECH 6227</p></td>
+<td><p>123.17€</p></td>
+</tr>
+<tr class="row-odd"><td><p>10</p></td>
+<td><p>Microcontroller</p></td>
+<td><p>NodeMCU ESP32-WROOM32</p></td>
+<td><p>11.49€</p></td>
+</tr>
+<tr class="row-even"><td><ul class="simple">
+<li></li>
+</ul>
+</td>
+<td><p>Misc.</p></td>
+<td><p>Attachment plates,
+screws, nuts, etc.
+(price is an estimate)</p></td>
+<td><p>60.00€</p></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td></td>
+<td><p>Total:</p></td>
+<td><p>396.90€</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<section id="frame-and-rails">
+<h2>Frame and rails<a class="headerlink" href="#frame-and-rails" title="Link to this heading">#</a></h2>
+<p>The frame is made up of standard <span class="math notranslate nohighlight">\({30}\, \text{mm} \times {30}\, \text{mm}\)</span> I-Type aluminum extrusions. They make assembly and disassembly of the table very practical, and allow for flexibility in the design, since hardware components can be mounted anywhere the user desires. The plate is designed with different mounting holes for mounting a large variety of mock-up specimens. The plate is attached to the frame by two low-maintenance friction bearings and rails (igus drylinW). The frame has to be fixed to some object with high mass to avoid vibrations of the surroundings, e.g., it can be bolted to a rigid high-mass table.</p>
+</section>
+<section id="motor-and-driver">
+<h2>Motor and driver<a class="headerlink" href="#motor-and-driver" title="Link to this heading">#</a></h2>
+<p>The displacement is applied to the plate by a bipolar stepper motor through a belt-gear system. Bipolar stepper motors are made up of two sets of coils. By switching the current through the coils and, therefore, the polarity of the induced magnetic fields, the motor is forced to turn by one step. The motor driver is a specialized electronic circuit, which handles the necessary operations for the electrical current output to realize this careful switching. It acts as an interface between the controller and the motor.</p>
+<p>Under ideal circumstances, the position of a stepper motor is known at all times, and a feedback loop is not needed. The setup is thus cost-effective and overall simple. In addition, the driver is able to perform so-called microsteps which enable the motor to be set to positions that do not correspond to full steps. This is achieved by interpolating the coil current. Using microsteps enhances the resolution of the motor without changing the hardware components. It also increases the versatility of the setup.</p>
+<p>An important characteristic of the table is the number of steps
+<span class="math notranslate nohighlight">\(n_{/disp}\)</span> that the motor performs for a given displacement,
+often taken as the number of steps per millimeter. This characteristic
+depends on the motor, the microstep setting and the hardware, i.e. the
+driving components. It can be calculated from the number of steps the
+motor performs per revolution and the displacement of the plate during
+one revolution of the motor as follows</p>
+<div class="math notranslate nohighlight">
+\[n_{/disp} = \dfrac{\text{number of steps per motor revolution}}{\text{plate displacement per motor revolution}} .
+%   \text{steps per mm} = \frac{\text{steps per revolution}}{\text{mm per revolution}},
+    \label{eq:StepsPerMM}\]</div>
+<p>The current setup uses a NEMA23 motor, where the coils are
+<span class="math notranslate nohighlight">\(1.8^{\circ}\)</span> apart. The DM542-driver is set to a microstep
+setting of 32 microsteps between two coils, so 6,400 . The belt
+comprises a tooth every 2 mm, and the GT2 gear has 20 teeth in total, so
+the belt moves by <span class="math notranslate nohighlight">\(40\)</span> . Therefore, the resolution of the Namazu
+setup with the features detailed here is <span class="math notranslate nohighlight">\(n_{/disp}=160\)</span> steps per
+millimeter; one microstep corresponds to a displacement of
+<span class="math notranslate nohighlight">\({0.0063}\, \text{mm}\)</span>. This feature is directly set via a serial
+command to the motor without the need to reprogram the controller.</p>
+<p>For stepper motors, a trade-off has to be accepted between speed and
+available torque. More microsteps per revolution decrease the available
+torque and also slightly decrease the accuracy, since the driver needs
+to interpolate the coil current between two full steps. Indeed, with
+high speeds the driver has less time to switch the coil current between
+steps and the inertia of the payload and the table assembly can perturb
+the control. If the motor torque is not adequate for the applied loads,
+it can result in loss of steps and therefore loss of accuracy.
+Nevertheless, there are many different sizes of motors available with
+torque ratings ranging from as low as a few <span class="math notranslate nohighlight">\(\text{Ncm}\)</span> (e.g.
+NEMA 11) to large motors capable of achieving a few tens of
+<span class="math notranslate nohighlight">\(\text{Nm}\)</span> (e.g. NEMA 42). A similar comment can be made about
+the microstep setting. Another remedy is planetary gearboxes with
+different ratios available for various motors. The planetary gearboxes
+increase the resolution without the need for microsteps. The drawback is
+that the gearboxes usually introduce some backlash, and the ratios are
+not adjustable.</p>
+</section>
+<section id="microcontroller">
+<h2>Microcontroller<a class="headerlink" href="#microcontroller" title="Link to this heading">#</a></h2>
+<p>The microcontroller is the core element of the Namazu control
+structure. It is the interfacing element between the hardware (driver)
+and software, which sets the motor velocity and rotation direction as
+well as storing, starting and stopping of an experiment. A desired
+displacement signal can be uploaded to the controller via the serial
+interface. Once the experiment is started, the controller pulses the
+<code class="docutils literal notranslate"><span class="pre">STEP</span></code>-pin of the motor driver at a certain frequency that depends on
+the desired speed, which in turn is dependent on the desired
+displacement. These calculations are performed by the microcontroller
+and stored before the experiment. For each <code class="docutils literal notranslate"><span class="pre">STEP</span></code>-pulse the motor
+turns by one step, i.e. changing the frequency of the pulse allows for
+the definition of arbitrary signals, which is the core functionality of
+Namazu.</p>
+<p>The compatibility of the microcontroller with the free real-time
+operating system (FreeRTOS) and the Arduino framework is mandatory to
+use the provided program. Further, we recommend a high-resolution
+hardware timer for the microcontroller such that the motor is controlled
+with high precision. The chosen microcontroller is an ESP32 devkit
+module. The processors’ clock rate of <span class="math notranslate nohighlight">\(250\, \text{MHz}\)</span>
+empowers us to update the motors’ velocity and direction of rotation up
+to <span class="math notranslate nohighlight">\(200\)</span> times per second. Moreover, the ESP32 provides a second
+core that can handle interrupts and provide a control interface, without
+interfering with the motor’s update rate. Thereby, we isolate the
+experiment from interfacing operations and improve the repeatability of
+experiments.</p>
+</section>
+<section id="variants">
+<h2>Variants<a class="headerlink" href="#variants" title="Link to this heading">#</a></h2>
+<p>The Namazu shaking table that is presented here comprises various
+pieces, which could be upgraded/downgraded independently depending on
+the user’s budget and research needs. This makes the shaking-table
+tunable. Indeed, it can be personalized to fit desired accuracy or
+operational conditions. Some variants are exposed in
+<a class="reference external" href="#tab:Namazuvariants">2</a>. Note that variations in the hardware make
+it necessary to recalculate the steps per mm setting for the motor, as
+this property depends on the physical properties of the table as well as
+the microstep settings in the driver. As an example, changing the belt
+and gear assembly of the current setup to a <span class="math notranslate nohighlight">\(1610\)</span> ball screw
+assembly (<span class="math notranslate nohighlight">\(1610\)</span> referring to a screw diameter of
+<span class="math notranslate nohighlight">\({16}\, \text{mm}\)</span> and a screw lead of <span class="math notranslate nohighlight">\({10}\, \text{mm}\)</span>) means that
+the belt, and so the table, is moved by <span class="math notranslate nohighlight">\({10}\, \text{mm}\)</span> per
+revolution of the motor. Together with the <span class="math notranslate nohighlight">\(200\)</span> steps per
+revolution of the motor this leads to a resolution of the shaking table
+of <span class="math notranslate nohighlight">\(n_{/disp}\)</span> equal to <span class="math notranslate nohighlight">\(20\)</span> steps per <span class="math notranslate nohighlight">\(\text{mm}\)</span>.</p>
+<p>Most limitations on payload capacity, acceleration, and speed are only
+given by the hardware components. Here, tests have shown that the
+Namazu table with current components performs well with physical
+properties given in <a class="reference external" href="#eq:PhysProp">[eq:PhysProp]</a>. The tested payload
+is <span class="math notranslate nohighlight">\({2}\, \text{kg}\)</span>. This small payload can fit some research
+projects. Besides, for teaching purposes, we find that using the table
+in combination with 3D-printed structures offers a versatile and
+low-cost solution to give students some experience with designing and
+testing parts. Indeed, 3D-printed structures, when printed with
+materials such as polylactic acid (PLA) or thermoplastic polyurethane
+(TPU), are cheep and lightweight. Therefore, a low-torque motor as
+introduced here can achieve already satisfying accuracy, with low cost
+hardware and simple handling of the Namazu framework. As a reference,
+the payload limitations on the SARSAR shaking table <a class="footnote-reference brackets" href="#footcite-damci2019development" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a> are given as
+<span class="math notranslate nohighlight">\({200}\, \text{kg}\)</span> capacity while also using a (more capable) stepper
+motor and a ball screw instead of the belt gear driving system.</p>
+<div class="center docutils container">
+<div class="docutils container" id="tab-namazuvariants">
+<table class="table" id="id4">
+<caption><span class="caption-text">Possible hardware variants.</span><a class="headerlink" href="#id4" title="Link to this table">#</a></caption>
+<tbody>
+<tr class="row-odd"><td><p><strong>Original piece</strong></p></td>
+<td><p><strong>Upgraded piece</strong></p></td>
+<td><p><strong>Advantage</strong></p></td>
+</tr>
+<tr class="row-even"><td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>Belt &amp; gear assembly</p></td>
+<td><p>Trapezoidal screw</p></td>
+<td><p>Higher accuracy and
+payload
+capabilities, more
+rigid construction
+due to no flexible
+parts, no
+inaccuracies due to
+belt slipping</p></td>
+</tr>
+<tr class="row-even"><td></td>
+<td><p>Ball screw</p></td>
+<td><p>Even higher accuracy
+and payload
+capabilities,
+smoother operation
+than trapezoidal
+screws, no
+inaccuracies due to
+belt slipping</p></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>Friction bearings</p></td>
+<td><p>Roller bearings
+(SBR16UU etc.)</p></td>
+<td><p>Higher payload
+capabilities</p></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>Frame</p></td>
+<td><p>Pre-built linear
+positioning table</p></td>
+<td><p>Higher manufacturing
+accuracy, multiple
+variants available</p></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>NEMA23 motor, DM542
+driver</p></td>
+<td><p>NEMA34 motor, DM860T
+driver</p></td>
+<td><p>Higher torque,
+higher payload</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>The table can also be tuned to decrease the cost. A motor with a lower
+torque such as the NEMA17 motor could be employed. These motors are very
+common since they are a standard parts used in 3D printers. There exists
+a wide variety of motor and driver combinations, thus we can not provide
+a comprehensive list. <a class="reference external" href="#tab:PartsAndCosts">1</a> shows that the highest
+cost in the setup comes from the power supply. We use here an adjustable
+power supply. It could be changed by a fixed voltage power supply to
+save cost.</p>
+<section id="hardware-interface">
+<span id="hwinterface"></span><h3><strong>Hardware interface</strong><a class="headerlink" href="#hardware-interface" title="Link to this heading">#</a></h3>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>These functionalities are currently under development and should be used with caution.</p>
+</div>
+<p>We implemented an option to connect buttons and limit switches to the table. The buttons can be used to enhance the functionality as they provide a direct way of starting and stopping the experiments, as well as moving the table to a desired position and centering the table in the middle position. The limit switches provide an additional safety mechanism and are also necessary to center the table.</p>
+</section>
+<section id="references">
+<h3>References<a class="headerlink" href="#references" title="Link to this heading">#</a></h3>
+<div class="docutils container" id="id2">
+<aside class="footnote-list brackets">
+<aside class="footnote brackets" id="footcite-damci2019development" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">1</a><span class="fn-bracket">]</span></span>
+<p>E Damcı and Çagla Şekerci. Development of a low-cost single-axis shake table based on arduino. <em>Experimental Techniques</em>, 43(2):179–198, 2019.</p>
+</aside>
+</aside>
+</div>
+</section>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="mathBackground.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Mathematical Background</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="functionality.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Functionality</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#frame-and-rails">Frame and rails</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#motor-and-driver">Motor and driver</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#microcontroller">Microcontroller</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#variants">Variants</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hardware-interface"><strong>Hardware interface</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+
+  <div class="tocsection sourcelink">
+    <a href="_sources/hardware.rst.txt">
+      <i class="fa-solid fa-file-lines"></i> Show Source
+    </a>
+  </div>
+</div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=bd9e20870c6007c4c509"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=bd9e20870c6007c4c509"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2024, Bittner, Grashorn, Banse.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.15.1.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

@@ -1,0 +1,278 @@
+Mathematical Background
+===========================
+
+------------------------
+**Structural Analysis**
+------------------------
+
+We summarize here basic concepts  of structural dynamics which motivated the implementation of Namazu.
+For deeper insights and special cases, the interested reader is referred
+to :footcite:p:`Chopra2007dynamics,li2010`. An ideal linear
+system is submitted to a time-dependent ground motion :math:`x_g(t)` as
+depicted in the figure below. The movement is such
+that the inertia effects cannot be neglected. All supports of the
+structure have the same displacement.
+
+.. figure:: _images/sketches/frame_sketch_a_v2.png
+   :name: fig:ideal_frame_structure
+
+   Idealized linear single-degree-of-freedom system of a frame structure under seismic ground motion :math:`x_g(t)`, :footcite:p:`Chopra2007dynamics`.
+
+Due to the ground’s movement, several reaction forces are occurring on
+the structure, Newton’s second law of motion states that a dynamic
+system is in equilibrium at each time instant. The occurring reaction
+forces are shown in the figure below. The displacement :math:`x(t)`
+is in relation to the lateral resisting force :math:`F_L = kx(t)`, where
+:math:`k` is the stiffness of the structure. Assuming damping is
+present, the damping force can be obtained by
+:math:`F_D = c \dot{x}(t)`, with :math:`c` being the damping
+coefficient.
+
+.. figure:: _images/sketches/frame_sketch_b_v2.png
+   :name: fig:dyn_eq
+
+   Free body system with reaction forces, dynamic equilibrium for each
+   time instance :math:`t`.
+
+The resulting total displacements of the structure are denoted by
+:math:`x_{\Sigma}(t)`. Since the ground motion is time-dependent, the
+following relation for the total displacement is given
+
+.. math:: x_{\Sigma}(t) = x_g(t) + x(t).
+
+The inertia force :math:`F_I` depends on the acceleration and mass of
+the structure, i.e. :math:`F_I = m \ddot{x}_{\Sigma}(t)`. The dynamic
+equilibrium gives
+
+.. math::
+
+       F_I(t) + F_D(t) + F_L(t) = 0.
+
+.. container:: float
+
+   .. figure:: _images/sketches/frame_sketch_b.png
+      :name: fig:frame_b
+
+      Lateral resisting force, connected to displacement :math:`x`. I
+      mean the arrow direction is kinda unintuitive
+
+   .. figure:: _images/sketches/frame_sketch_c.png
+      :name: fig:frame_c
+
+      Damping force, connected to velocity :math:`\dot{x}`.
+
+   .. figure:: _images/sketches/frame_sketch_d.png
+      :name: fig:frame_d
+
+      Inertia force related to mass components, connected to
+      acceleration :math:`\ddot{x}_t`.
+
+The equation of motion in a linear elastic case is thus given by
+
+.. math:: m\ddot{x}(t) + c\dot{x}(t) + k x(t) = -m \ddot{x}_g(t).
+
+Hence the idea of a displacement-controlled experimental setup. The
+tunable shaking table should be able to model the seismic ground motion
+:math:`x_g(t)` present, which is represented by the shaking table's
+specimen plate movement. These motions can of course also be connected
+to other motions, such as the vibration of machinery, slides, or
+harmonic movements.
+
+.. _sigGen:
+
+---------------------
+**Signal Generation**
+---------------------
+
+^^^^^^^^^^^^^^^^^^^^^
+**Harmonic Signals**
+^^^^^^^^^^^^^^^^^^^^^
+
+First, harmonic signals have been considered. They consist of a sum of frequency components and are closely related to the Fourier series. Choosing a number :math:`n_{\Omega}` of frequencies, the position :math:`x_{H}(t)` is calculated as the superposition of the harmonic frequencies and their respective amplitude factor by
+
+.. math::
+    :name: eq_Harmonic
+
+    x_H(t) = \sum_{k=1}^{n_{\Omega}} \mathbb{A}_k \sin(2\pi\mathbf{\Omega}_kt),
+
+where :math:`\mathbf{\Omega}_i \in \mathbb{R}_{\geq0}` are the frequencies of interest and :math:`\mathbb{A}_i \in \mathbb{R}_{\geq0}`
+the corresponding amplitude values with :math:`i \in [1, n_{\Omega}]`. The figures below show a fixed harmonic signal with a single frequency and a mixed harmonic signal with three superposed frequency components. These signals are deterministic.
+
+.. container:: float
+   :name: fig:harmonic_mixed_harmonic
+
+   .. figure:: _figures/fixed_harmonic_pre_rampup_2Hz_10s-crop.png
+        :name: fig:input_signal_2Hz
+        :figwidth: 60 %
+
+        Fixed harmonic signal with 2 Hz
+
+   .. figure:: _figures/fixed_harmonic_pre_rampup_FibonacciHz_10s-crop.png
+        :name: fig:input_signal_fibonacci
+        :figwidth: 60 %
+
+        Fixed harmonic signal with three overlapping frequencies
+
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+**Stationary Stochastic Signals**
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Another class of signals of interest in structural engineering consists
+of uni-variate stationary Gaussian stochastic processes. They can be
+described by the **Spectral Representation Method** (SRM) from a
+functional frequency content, the so-called Power Spectral Density (PSD)
+function. The SRM and its variations, such as the Stochastic Harmonic
+Function (SHF) representation :footcite:p:`chen2017`, are commonly
+used to simulate artificial ground motion :footcite:p:`Lyu2023,Liu2022`.
+
+Any PSD function can be used in the OpenVIBE framework according to the
+user preferences. Among possible PSD, the Shinozuka and Deodatis
+frequency content :footcite:p:`shinozuka1991simulation` referred
+to as the Shinozuka benchmark and defined by the following PSD
+
+.. math::
+    :name: eq:SX
+   
+       S_{S}(\omega) = \frac{1}{4} \sigma^2 b^3 \omega^2 e^{-b |\omega|},\quad -\infty < \omega < \infty,
+
+is chosen. The constant :math:`\sigma` corresponds to the standard
+deviation of the stochastic signal and :math:`b` is a parameter that
+models the correlation distance of the stochastic signals
+:footcite:p:`shinozuka1988response`. The values :math:`\sigma = 1`
+and :math:`b = 1` are chosen. From the reference PSD, a realization of
+the stochastic signal denoted :math:`x_S(t)` reads
+
+.. math::
+    :name: eq:SRM
+
+    x_S(t) = \mathbb{A}_s \sum \limits_{n = 0}^{N-1} \sqrt{4 S_{x_{S}}(\omega_n) \Delta \omega} \cos(\omega_n t + \varphi_n).
+
+The angular frequencies :math:`\omega_n` in :math:`\text{rad/s}` are defined as
+:math:`\omega_n = n \Delta \omega` with :math:`n \in [0,N-1]` and
+:math:`\Delta \omega = \omega_u/N`. The angular frequency
+:math:`\omega_u = 4\pi\ \text{rad/s}` is the upper cut-off
+angular frequency, directly linked with the upper cut-off frequency as
+:math:`f_u = \omega_u /2\pi` beyond which the PSD function vanishes. The
+corresponding time discretization is :math:`\Delta t = \pi/\omega_u` in
+:math:`[\text{s}]` . The number of terms :math:`N` is a choice
+which governs the accuracy of the approximation. The phase angles
+:math:`\varphi_n` are independent realizations of a uniform distribution
+between :math:`0` and :math:`2 \pi`
+:footcite:p:`shinozuka1991simulation`.
+
+The signal magnitude is scaled by the factor
+:math:`\mathbb{A}_s \in \mathbb{R}_{\geq0}` to achieve the displacement
+amplitude desired by the user. For instance, to reach a maximum
+displacement around :math:`17\ \text{mm}`, the scaling factor
+:math:`\mathbb{A}_s = 3` has been chosen. One realization, i.e. a
+stochastic signal generated with the Shinozuka benchmark is shown here:
+
+.. figure:: _figures/23-12_shnzk_signal_unfiltered-crop.png
+   :name: fig:Shinozuka_signal
+
+   One realization of a random signal with the Shinozuka PSD :math:numref:`eq:SRM` for :math:`N=128, \omega_u = 4\pi, \Delta t = \pi/\omega_u, T = 64 \text{s}, \mathbb{A}_s = 3`
+
+The periodogram :footcite:p:`li2010, Newland2012introduction, Behrendt2022periodogram`
+is used to estimate the signal PSD based on the discrete Fourier
+transformation of the random signals :math:numref:`eq:SRM`, as
+detailed in :ref:`the Periodogram section <sec:Periodogram>`. The direct
+approximation of the signal PSD by an estimator like the periodogram is
+usually not possible, as the target PSD is not known exactly for natural
+processes.
+
+Shinozuka benchmark
+-------------------
+
+We introduced the Shinozuka benchmark as a way of testing the frequency accuracy of the table and the framework. Usually, a single realization from a stochastic signal does not produce a nice looking PSD, but for certain input PSD functions this can be the case (e.g. :math:numref:`eq:SRM`). While looking for ways to ensure that the framework does what it is supposed to do, the idea came up to use this property. Generating a signal from this PSD, then measuring the movement of the table and estimating the frequency contents with the Periodogram, we can easily assess divergences in the table's behavior.
+The :ref:`figure below<fig:Shinozuka PSD>` shows the approximation of the Shinozuka PSD by the periodogram compared to the target PSD originally used to simulate the signal :math:numref:`eq:SX`. All frequency components in the signal are preserved and thus the approximation is very accurate. The accuracy of  the table can thus be evaluated by simulating one (or more for variance estimation) realizations with the Shinozuka PSD, measuring the displacement and then  comparing the measured PSD to the original. For an accurate motion both PSDs should align. Therefore, the shaking table movement can be validated for the  prescribed range of frequencies and accurate artificial ground motions of the shaking table will be expected for other stochastic signals generated by the SRM with similar frequency ranges to the Shinozuka benchmark.
+
+.. figure:: _figures/shinozuka_PSD_revamped_rad-crop.png
+   :name: fig:Shinozuka PSD
+
+   Shinozuka benchmark: scaled periodogram of one arbitrary realization :math:numref:`eq:SRM` and target PSD :math:numref:`eq:SX`
+
+.. _postProcessing:
+
+---------------------------------------------------
+Post-processing input signals for the shaking table
+---------------------------------------------------
+
+Some generated signals might require large initial accelerations or
+velocities due to the underlying numerical procedures. To circumvent
+these issues, we introduced post-processing procedures to ensure the
+safe usage of the shaking table.
+
+First, for the harmonic signals :math:`x_H(t)`, artificial linear
+acceleration and deceleration phases based on a window-function are
+inserted. The acceleration phase lasts from :math:`t=0` to :math:`t=t_u`
+and the deceleration phase's duration lasts from :math:`t=t_d` to
+:math:`t = T` such that the durations of acceleration and deceleration
+are :math:`t_u` and :math:`T_d = T - t_d`, respectively. Then, the
+harmonic signal :math:`x_H(t)` is adjusted from these two windows as
+
+.. math::
+
+   \hat{x}_H(t) = 
+       \begin{cases}
+           \frac{t}{t_u} x_H, & t<t_u,\\
+           (1-\frac{t-T_d}{T-T_d}) x_H, &t>T_d,\\
+           x_H, &else.
+       \end{cases}
+
+Considering :math:`t_u = t_d = 1\ \text{s}`, the harmonic signals from :ref:`above <fig:input_signal_2Hz>` are
+corrected to have adequate acceleration and deceleration:
+
+.. container:: float
+   :name: fig:post-processing_signals
+
+   .. figure:: _figures/fixed_harmonic_post_rampup_2Hz_10s-crop.png
+      :name: fig:input_post_signal_2Hz
+      :figwidth: 60 %
+
+   .. figure:: _figures/fixed_harmonic_post_rampup_FibonacciHz_10s-crop.png
+      :name: fig:input_post_signal_fibonacci
+      :figwidth: 60 %
+
+Second, the position for the first time instance must always be zero,
+whereas it may not be a priori the case for the stochastic signal. This
+is achieved by zero padding for all signals, adding a zero position for
+the time instance :math:`t=0`. Only one time instant is added and not an
+acceleration ramp because the frequency content of the signal has to be
+preserved. It results in :math:`\hat{x}_S(t) = [0, x_S(t)]` and the time
+discretization is adjusted to :math:`t \in [0,T+\Delta t]`:
+
+.. figure:: _figures/23-12_shnzk_signal_comparison_filter_unfilter-crop.png
+   :name: fig:Shinozuka_signal_zero_padding
+
+   Comparison of an unmodified SRM signal :math:`x_S(t)` and the zero-padded signal :math:`\hat{x}_S(t)`.
+
+Other post-processing procedures, such as different window-functions for
+the ramp up and down are of course possible due to the open source
+nature of OpvenVIBE, but these are currently not implemented.
+
+.. _`sec:Periodogram`:
+
+-----------
+Periodogram
+-----------
+
+The periodogram :footcite:p:`Newland2012introduction` is an
+estimator to determine PSD functions from stochastic signals. It is
+defined as the squared absolute value of the discrete Fourier transform
+of a time signal :math:`X(t)` as follows
+
+.. math::
+    :name: eq:periodogram
+    
+    \hat{S}_X(\omega_k) = \lim \limits_{T \rightarrow \infty} \frac{\Delta t^2}{T} \left|\sum \limits_{t = 0}^{T-1} X(t) e^{-2 \pi i k t / T}\right|^2,
+
+where :math:`T` is the total number of discretized signal points and
+:math:`\Delta t` the time increment. The time instant in the record
+:math:`t` is just an index and :math:`k` is the angular frequency
+discretization with :math:`\omega_k = \frac{2 \pi k}{T}`.
+
+----------
+References
+----------
+
+.. footbibliography::

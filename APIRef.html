@@ -6,7 +6,9 @@
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><title>Search - Namazu 0.1 documentation</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>API Reference &#8212; Namazu 0.1 documentation</title>
   
   
   
@@ -45,12 +47,11 @@
     <script src="_static/design-tabs.js?v=36754332"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'search';</script>
-  <script src="_static/searchtools.js"></script>
-  <script src="_static/language_data.js"></script>
-  <script src="searchindex.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'APIRef';</script>
     <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="#" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Bibliography" href="bibliography.html" />
+    <link rel="prev" title="Miscellaneous" href="misc.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -87,7 +88,7 @@
     <div class="search-button__overlay"></div>
     <div class="search-button__search-container">
 <form class="bd-search d-flex align-items-center"
-      action="#"
+      action="search.html"
       method="get">
   <i class="fa-solid fa-magnifying-glass"></i>
   <input type="search"
@@ -200,8 +201,8 @@
                     </li>
                 
 
-                    <li class="nav-item">
-                      <a class="nav-link dropdown-item nav-internal" href="APIRef.html">
+                    <li class="nav-item current active">
+                      <a class="nav-link dropdown-item nav-internal" href="#">
                         API Reference
                       </a>
                     </li>
@@ -371,8 +372,8 @@ document.write(`
                     </li>
                 
 
-                    <li class="nav-item">
-                      <a class="nav-link dropdown-item nav-internal" href="APIRef.html">
+                    <li class="nav-item current active">
+                      <a class="nav-link dropdown-item nav-internal" href="#">
                         API Reference
                       </a>
                     </li>
@@ -443,46 +444,111 @@ document.write(`
           <div class="bd-content">
             <div class="bd-article-container">
               
-              <div class="bd-header-article"></div>
-              
-              
-  <div class="bd-search-container">
-    <h1>Search</h1>
-    <noscript>
-      <div class="admonition error">
-        <p class="admonition-title">Error</p>
-        <p>Please activate JavaScript to enable the search functionality.</p>
-      </div>
-    </noscript>
-    
-<form class="bd-search d-flex align-items-center"
-      action="#"
-      method="get">
-  <i class="fa-solid fa-magnifying-glass"></i>
-  <input type="search"
-         class="form-control"
-         name="q"
-         id="search-input"
-         placeholder="Search the docs ..."
-         aria-label="Search the docs ..."
-         autocomplete="off"
-         autocorrect="off"
-         autocapitalize="off"
-         spellcheck="false"/>
-  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form>
-    <div id="search-results"></div>
-  </div>
-  <script>
-    // Activate the search field on page load
-    let searchInput = document.querySelector("form.bd-search input");
-    if (searchInput) {
-        searchInput.focus();
-        searchInput.select();
-        console.log("[PST]: Set focus on search field.");
-    }
-  </script>
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
 
+
+
+<nav aria-label="Breadcrumb">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    <li class="breadcrumb-item active" aria-current="page">API Reference</li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="api-reference">
+<h1>API Reference<a class="headerlink" href="#api-reference" title="Link to this heading">#</a></h1>
+<p>To define an experiment, use <code class="docutils literal notranslate"><span class="pre">MainCreateSimulation.m</span></code>.</p>
+<p>To directly send instructions to the controller, you can use the <code class="docutils literal notranslate"><span class="pre">SendInstructionsToUSB()</span></code> function.</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-0" name="sd-tab-set-0" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-0">
+Matlab</label><div class="sd-tab-content docutils">
+<dl class="mat function">
+<dt class="sig sig-object mat" id="SendInstructionToUSB">
+<span class="sig-name descname"><span class="pre">SendInstructionToUSB</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">dev</span></em>, <em class="sig-param"><span class="pre">msg</span></em>, <em class="sig-param"><span class="pre">nInstr</span></em><span class="sig-paren">)</span><a class="headerlink" href="#SendInstructionToUSB" title="Link to this definition">#</a></dt>
+<dd><p>Sends a defined number of instructions to the controller.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dev</strong> (<span><code class="xref mat mat-obj docutils literal notranslate"><span class="pre">serialport</span></code></span>) – <em>serialport</em> in MATLAB.</p></li>
+<li><p><strong>msg</strong> (<span><code class="xref mat mat-obj docutils literal notranslate"><span class="pre">String</span></code></span>) – String to send.</p></li>
+<li><p><strong>nInstr</strong> – Int</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>String returned from controller (I think)</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<input id="sd-tab-item-1" name="sd-tab-set-0" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-1">
+Python</label><div class="sd-tab-content docutils">
+<dl class="py function">
+<dt class="sig sig-object py" id="id0">
+<span class="sig-name descname"><span class="pre">SendInstructionToUSB</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dev</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">msg</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nInstr</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#id0" title="Link to this definition">#</a></dt>
+<dd><p>Sends a defined number of instructions to the controller.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dev</strong> (<em>serialport</em>) – <em>serialport</em> in MATLAB.</p></li>
+<li><p><strong>msg</strong> (<em>String</em>) – String to send.</p></li>
+<li><p><strong>nInstr</strong> – Int</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>String returned from controller (I think)</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+</div>
+<section id="marv-code-syntax-list">
+<span id="marv-code"></span><h2><strong>Marv-code syntax list</strong><a class="headerlink" href="#marv-code-syntax-list" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">start</span></code> Starts motor movement with previously defined positions at the previously set rate.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">stop</span></code> Immediately stops motor movement.</p></li>
+<li><dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">info</span></code> Writes out information about machine state to serial,</dt><dd><p><code class="docutils literal notranslate"><span class="pre">OK:</span> <span class="pre">Info:</span> <span class="pre">state:</span> <span class="pre">READY,</span> <span class="pre">mode</span> <span class="pre">POSITION,</span> <span class="pre">command</span> <span class="pre">25</span> <span class="pre">of</span> <span class="pre">25,</span> <span class="pre">rate:</span> <span class="pre">20hz,</span> <span class="pre">spmm:</span> <span class="pre">10</span></code></p>
+</dd>
+</dl>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">set</span> <span class="pre">rate</span> <span class="pre">nnn.nnn</span></code> set the amount of positions to handle in one second.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">set</span> <span class="pre">spmm</span></code> Specifies how many steps the motor has to drive to move the plate one millimeter.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">add</span> <span class="pre">nnn.nnn</span></code> Adds a position at the end of list.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">reset</span></code> Resets all positions from memory.</p></li>
+</ul>
+</section>
+</section>
+
+
+                </article>
+              
               
               
               
@@ -490,6 +556,24 @@ document.write(`
                 <footer class="prev-next-footer">
                   
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="misc.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Miscellaneous</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="bibliography.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Bibliography</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
 </div>
                 </footer>
               
@@ -497,7 +581,32 @@ document.write(`
             
             
               
-                <div class="bd-sidebar-secondary bd-toc"></div>
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id0"><code class="docutils literal notranslate"><span class="pre">SendInstructionToUSB()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#marv-code-syntax-list"><strong>Marv-code syntax list</strong></a></li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+
+  <div class="tocsection sourcelink">
+    <a href="_sources/APIRef.rst.txt">
+      <i class="fa-solid fa-file-lines"></i> Show Source
+    </a>
+  </div>
+</div>
+
+</div></div>
               
             
           </div>

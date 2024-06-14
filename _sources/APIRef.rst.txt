@@ -1,0 +1,49 @@
+API Reference
+=================
+
+To define an experiment, use ``MainCreateSimulation.m``.
+
+To directly send instructions to the controller, you can use the ``SendInstructionsToUSB()`` function.
+
+.. tab-set::
+    
+    .. tab-item:: Matlab
+
+        .. mat:function:: SendInstructionToUSB(dev,msg,nInstr)
+
+            Sends a defined number of instructions to the controller.
+
+            :param dev: *serialport* in MATLAB.
+            :type dev: serialport
+            :param msg: String to send.
+            :type msg: String
+            :param nInstr: Int
+            :return: String returned from controller (I think)
+
+    .. tab-item:: Python
+
+        .. py:function:: SendInstructionToUSB(dev,msg,nInstr)
+
+            Sends a defined number of instructions to the controller.
+
+            :param dev: *serialport* in MATLAB.
+            :type dev: serialport
+            :param msg: String to send.
+            :type msg: String
+            :param nInstr: Int
+            :return: String returned from controller (I think)
+
+.. _marv-Code:
+
+-------------------------
+**Marv-code syntax list**
+-------------------------
+
+* ``start`` Starts motor movement with previously defined positions at the previously set rate.
+* ``stop`` Immediately stops motor movement.
+* ``info`` Writes out information about machine state to serial,
+    ``OK: Info: state: READY, mode POSITION, command 25 of 25, rate: 20hz, spmm: 10``
+* ``set rate nnn.nnn`` set the amount of positions to handle in one second.
+* ``set spmm`` Specifies how many steps the motor has to drive to move the plate one millimeter.
+* ``add nnn.nnn`` Adds a position at the end of list.
+* ``reset`` Resets all positions from memory.

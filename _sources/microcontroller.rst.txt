@@ -1,0 +1,71 @@
+Microcontroller
+===============
+
+------------
+**Overview**
+------------
+
+We currently use ESP32-microcontrollers for this project. These provide the necessary hardware (timers and two cores) and enough speed for most use-cases. We tested with ESP32-WROOM32 and ESP32 Firebeetle modules.
+
+.. _ucInstallation:
+
+-------------------------
+**Firmware installation**
+-------------------------
+
+For installing the firmware on the ESP32 it is advised to use `Visual Studio Code <https://code.visualstudio.com/>`_ and the `PlatformIO extension <https://platformio.org/>`_. This makes changing and uploading the firmware easier. The PlatformIO can be installed through the extension tab in VS code. In addition, the USB-driver for the ESP (CH210x) is needed.
+
+Uploading of the firmware is done by switching in VS code to the firmware folder of the repository, then opening the PlatformIO tab and hitting upload. There are a few (more or less optional) settings to be made in the firmware. The options can be found in ``config.h`` in the ``src`` folder. 
+
+
+.. container:: center
+
+   .. container::
+      :name: tab:Namazuvariants
+
+      .. table:: Firmware option descriptions.
+
+            +----------------------------------------+--------------------------------------------------------------------------------------------------------------------------------+
+            | ``#define DEBUG true/false``           | Tells the controller to write debug messages to serial. Default false.                                                         |
+            +----------------------------------------+--------------------------------------------------------------------------------------------------------------------------------+
+            | ``#define SERIAL_RATE 921600``         | Define the baud-rate, i.e. the communication speed between                                                                     |
+            |                                        | controller and interfacing software. Default 921600.                                                                           |
+            +----------------------------------------+--------------------------------------------------------------------------------------------------------------------------------+
+            | ``#define DEFAULT_RATE 10``            | Default rate for the command rate (number of commands per second). Can be changed via serial. Default 10                       |
+            +----------------------------------------+--------------------------------------------------------------------------------------------------------------------------------+
+            | ``#define DEFAULT_SPMM 30``            | Default steps per mm of the table. Can be changed via Serial. Default 10                                                       |
+            +----------------------------------------+--------------------------------------------------------------------------------------------------------------------------------+
+            | ``#define MOVEMENT_SPEED 50``          | Default movement speed of the table for positioning and centering. Default 50                                                  |
+            +----------------------------------------+--------------------------------------------------------------------------------------------------------------------------------+
+            | ``#define CONFIG_HAS_BUTTONS true``    | Whether or not buttons are attached to the table. See :ref:`hardware interface<hwInterface>`.                                  |
+            +----------------------------------------+--------------------------------------------------------------------------------------------------------------------------------+
+            | ``#define CONFIG_HAS_LIMITS true``     | Whether or not limit switches are attached to the table. See :ref:`hardware interface<hwInterface>`.                           |
+            +----------------------------------------+--------------------------------------------------------------------------------------------------------------------------------+
+            | ``#define CONFIG_USE_EEPROM false``    | Whether or not to use inbuilt EEPROM to save position data. CURRENTLY SOMEWHAT UNTESTED! Only supported on some ESP32 models.  |
+            +----------------------------------------+--------------------------------------------------------------------------------------------------------------------------------+
+            | ``#define PIN_XXX``                    | Define digital PIN for the indicated functions (list can be found below).                                                      |
+            +----------------------------------------+--------------------------------------------------------------------------------------------------------------------------------+
+
+.. admonition:: PIN function list (click to expand)
+    :class: dropdown
+
+    * ``PIN_EN``: enable
+    * ``PIN_INVERT_EN``: inverted enable
+    * ``PIN_DIR``: direction
+    * ``PIN_INVERT_DIR`` inverted direction
+    * ``PIN_STEP``: step (or pulse on some drivers)
+    
+    * ``PIN_BTN_START``: Start button
+    * ``PIN_BTN_STOP``: Stop button
+    * ``PIN_BTN_PAUSE``: Pause button
+    * ``PIN_BTN_UP``: Button to move table in "up" direction
+    * ``PIN_BTN_DOWN``: Button to move table in "down" direction
+    * ``PIN_BTN_CENTER``: centering button
+    * ``PIN_BTN_LIMIT_MIN``: pin for "lower" limit switch
+    * ``PIN_BTN_LIMIT_MAX``: pin for "upper" limit switch
+
+    .. note::
+
+        Actual "up" and "down" directions, as well as the connection of the limit switches depends on the connection of the motor to the table and the exact motor wiring. The firmware is agnostic to the actual connection of the limit switches, but beware of directions for the buttons.
+
+        
