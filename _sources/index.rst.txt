@@ -1,7 +1,14 @@
 Welcome to Namazu's documentation!
 ========================================
 
-**Namazu** (openShakingTable) is a framework for vibration experiments using shaking tables. **Namazu** is *independent* of operating systems, programming languages and frameworks, as long as the software can interface with serial ports. We provide here documentation for choice of hardware (motors, drivers etc.), the microcontroller firmware and the current implementation in MATLAB and Python.
+**Namazu** (from the earthquake-causing giant catfish in Japanese mythology) is a framework for vibration experiments using shaking tables. **Namazu** is *independent* of operating systems, programming languages and frameworks, as long as the software can interface with serial ports. We provide here documentation for choice of hardware (motors, drivers etc.), the microcontroller firmware and the current implementation in MATLAB and Python.
+
+The motivation behind this framework is to offer a versatile and low-cost framework for research and education for dynamic systems and earthquake engineering. Through our background in these fields we designed the firmware with earthquake signal generation from stochastic processes in mind.
+
+.. figure:: _images/logos/LogoSmall.png
+   :target: https://en.wikipedia.org/wiki/Namazu
+
+   Namazu as envisioned by DALL-E
 
 .. note::
 
@@ -14,12 +21,22 @@ Welcome to Namazu's documentation!
    :maxdepth: 1
 
    usage
-   .. mathBackground
    BuildInstructions
-   .. hardware
-   .. software
-   .. misc
-   .. APIRef
+   mathBackground
+   hardware
+   functionality
+   microcontroller
+   misc
+   APIRef
+   bibliography
+
+This work is a cooperation of the 
+
+* Institute for Risk and Reliability (Leibniz University Hannover)
+* International Research Training Group 2657
+* Laboratoire de Méchanique Paris Saclay (École-normale supérieure Paris-Saclay)
+* Institute for distributed systems, department for Computer Science (Carl von Ossietzky University Oldenburg).
+* Institute of Mechanics and Computational Mechanics (Leibniz University Hannover)
 
 .. image:: _images/logos/FullLogos.jpg
 

@@ -3,13 +3,13 @@ Build instructions
 
 The present document shows the assembly of the table as it was put together in the IRTG/IRZ/IBNM-lab at the University of Hannover in June 2023. Note that the actual assembly of the frame might not be the most optimal, as it was observed that some parts of the frame could move and shift during operation. It might be possible to stiffen up the assembly by additional parts or by assembling the table in a  different way altogether. The present document provides only a suggestion of assembly.
 
-We kept the setup of all components (frame, motor, electronics) as general as possible, so that this framework should work with different setups. In our version we used a belt and gears together with a NEMA23 stepper motor to drive the table, but it should be possible to use other parts, i.e. other stepper motors or ball/trapezoidal screws for the driving mechanism. The :doc:`software <software>` works by controlling the stepping rate of the motor, so theoretically any stepper motor/controller should work (we tested this set up so far with a NEMA23 motor and a DM542 driver, as well as a NEMA17 with TMC2209 and A4988 driver).
+We kept the setup of all components (frame, motor, electronics) as general as possible, so that this framework should work with different setups. In our version we used a belt and gears together with a NEMA23 stepper motor to drive the table, but it should be possible to use other parts, i.e. other stepper motors or ball/trapezoidal screws for the driving mechanism. The :doc:`software <functionality>` works by controlling the stepping rate of the motor, so theoretically any stepper motor/controller should work (we tested this set up so far with a NEMA23 motor and a DM542 driver, as well as a NEMA17 with TMC2209 and A4988 driver).
 
 -------------------------
 **Assembly of the table**
 -------------------------
 
-This section describes the assembly of the table. For further details and explanations on hardware components please see the :doc:`Hardware <hardware>` section, for software the :doc:`Software <software>` section and for a quick overview the :doc:`Usage <usage>` section.
+This section describes the assembly of the table. For further details and explanations on hardware components please see the :doc:`Hardware <hardware>` section, for software the :doc:`Software <functionality>` section and for a quick overview the :doc:`Usage <usage>` section.
 
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 **Assembly of the frame**

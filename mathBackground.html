@@ -1,0 +1,883 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Mathematical Background &#8212; Namazu 0.1 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=bd9e20870c6007c4c509" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=bd9e20870c6007c4c509" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=bd9e20870c6007c4c509" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=bd9e20870c6007c4c509" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=bd9e20870c6007c4c509" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=bd9e20870c6007c4c509" />
+  <script src="_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=bd9e20870c6007c4c509"></script>
+
+    <script src="_static/documentation_options.js?v=2709fde1"></script>
+    <script src="_static/doctools.js?v=888ff710"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script src="_static/design-tabs.js?v=36754332"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'mathBackground';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Hardware" href="hardware.html" />
+    <link rel="prev" title="Build instructions" href="BuildInstructions.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <header>
+  
+    <div class="bd-header navbar navbar-expand-lg bd-navbar">
+<div class="bd-header__inner bd-page-width">
+  <label class="sidebar-toggle primary-toggle" for="__primary">
+    <span class="fa-solid fa-bars"></span>
+  </label>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/LogoSmall.png" class="logo__image only-light" alt="Namazu 0.1 documentation - Home"/>
+    <script>document.write(`<img src="_static/LogoSmall.png" class="logo__image only-dark" alt="Namazu 0.1 documentation - Home"/>`);</script>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav class="navbar-nav">
+  <ul class="bd-navbar-elements navbar-nav">
+    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="usage.html">
+                        Usage
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="BuildInstructions.html">
+                        Build instructions
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="#">
+                        Mathematical Background
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="hardware.html">
+                        Hardware
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="functionality.html">
+                        Functionality
+                      </a>
+                    </li>
+                
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+                    <li class="nav-item">
+                      <a class="nav-link dropdown-item nav-internal" href="microcontroller.html">
+                        Microcontroller
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link dropdown-item nav-internal" href="misc.html">
+                        Miscellaneous
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link dropdown-item nav-internal" href="APIRef.html">
+                        API Reference
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link dropdown-item nav-internal" href="bibliography.html">
+                        Bibliography
+                      </a>
+                    </li>
+                
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links navbar-nav"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/ShakingTable/shakingtable.github.io" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fab fa-github-square fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+    </div>
+  
+
+  
+    <label class="sidebar-toggle secondary-toggle" for="__secondary" tabindex="0">
+      <span class="fa-solid fa-outdent"></span>
+    </label>
+  
+</div>
+
+    </div>
+  
+  </header>
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar hide-on-wide">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          <div class="navbar-item">
+<nav class="navbar-nav">
+  <ul class="bd-navbar-elements navbar-nav">
+    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="usage.html">
+                        Usage
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="BuildInstructions.html">
+                        Build instructions
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="#">
+                        Mathematical Background
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="hardware.html">
+                        Hardware
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="functionality.html">
+                        Functionality
+                      </a>
+                    </li>
+                
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-controls="pst-nav-more-links-2">
+                    More
+                </button>
+                <ul id="pst-nav-more-links-2" class="dropdown-menu">
+                    
+                    <li class="nav-item">
+                      <a class="nav-link dropdown-item nav-internal" href="microcontroller.html">
+                        Microcontroller
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link dropdown-item nav-internal" href="misc.html">
+                        Miscellaneous
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link dropdown-item nav-internal" href="APIRef.html">
+                        API Reference
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link dropdown-item nav-internal" href="bibliography.html">
+                        Bibliography
+                      </a>
+                    </li>
+                
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links navbar-nav"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/ShakingTable/shakingtable.github.io" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fab fa-github-square fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+
+
+<nav aria-label="Breadcrumb">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    <li class="breadcrumb-item active" aria-current="page">Mathematical...</li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="mathematical-background">
+<h1>Mathematical Background<a class="headerlink" href="#mathematical-background" title="Link to this heading">#</a></h1>
+<section id="structural-analysis">
+<h2><strong>Structural Analysis</strong><a class="headerlink" href="#structural-analysis" title="Link to this heading">#</a></h2>
+<p>We summarize here basic concepts  of structural dynamics which motivated the implementation of Namazu.
+For deeper insights and special cases, the interested reader is referred
+to <a class="footnote-reference brackets" href="#footcite-chopra2007dynamics" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a><a class="footnote-reference brackets" href="#footcite-li2010" id="id2" role="doc-noteref"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></a>. An ideal linear
+system is submitted to a time-dependent ground motion <span class="math notranslate nohighlight">\(x_g(t)\)</span> as
+depicted in the figure below. The movement is such
+that the inertia effects cannot be neglected. All supports of the
+structure have the same displacement.</p>
+<figure class="align-default" id="fig-ideal-frame-structure">
+<img alt="_images/frame_sketch_a_v2.png" src="_images/frame_sketch_a_v2.png" />
+<figcaption>
+<p><span class="caption-text">Idealized linear single-degree-of-freedom system of a frame structure under seismic ground motion <span class="math notranslate nohighlight">\(x_g(t)\)</span>, <a class="footnote-reference brackets" href="#footcite-chopra2007dynamics" id="id3" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a>.</span><a class="headerlink" href="#fig-ideal-frame-structure" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p>Due to the ground’s movement, several reaction forces are occurring on
+the structure, Newton’s second law of motion states that a dynamic
+system is in equilibrium at each time instant. The occurring reaction
+forces are shown in the figure below. The displacement <span class="math notranslate nohighlight">\(x(t)\)</span>
+is in relation to the lateral resisting force <span class="math notranslate nohighlight">\(F_L = kx(t)\)</span>, where
+<span class="math notranslate nohighlight">\(k\)</span> is the stiffness of the structure. Assuming damping is
+present, the damping force can be obtained by
+<span class="math notranslate nohighlight">\(F_D = c \dot{x}(t)\)</span>, with <span class="math notranslate nohighlight">\(c\)</span> being the damping
+coefficient.</p>
+<figure class="align-default" id="fig-dyn-eq">
+<img alt="_images/frame_sketch_b_v2.png" src="_images/frame_sketch_b_v2.png" />
+<figcaption>
+<p><span class="caption-text">Free body system with reaction forces, dynamic equilibrium for each
+time instance <span class="math notranslate nohighlight">\(t\)</span>.</span><a class="headerlink" href="#fig-dyn-eq" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p>The resulting total displacements of the structure are denoted by
+<span class="math notranslate nohighlight">\(x_{\Sigma}(t)\)</span>. Since the ground motion is time-dependent, the
+following relation for the total displacement is given</p>
+<div class="math notranslate nohighlight">
+\[x_{\Sigma}(t) = x_g(t) + x(t).\]</div>
+<p>The inertia force <span class="math notranslate nohighlight">\(F_I\)</span> depends on the acceleration and mass of
+the structure, i.e. <span class="math notranslate nohighlight">\(F_I = m \ddot{x}_{\Sigma}(t)\)</span>. The dynamic
+equilibrium gives</p>
+<div class="math notranslate nohighlight">
+\[F_I(t) + F_D(t) + F_L(t) = 0.\]</div>
+<div class="float docutils container">
+<figure class="align-default" id="fig-frame-b">
+<img alt="_images/frame_sketch_b.png" src="_images/frame_sketch_b.png" />
+<figcaption>
+<p><span class="caption-text">Lateral resisting force, connected to displacement <span class="math notranslate nohighlight">\(x\)</span>. I
+mean the arrow direction is kinda unintuitive</span><a class="headerlink" href="#fig-frame-b" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<figure class="align-default" id="fig-frame-c">
+<img alt="_images/frame_sketch_c.png" src="_images/frame_sketch_c.png" />
+<figcaption>
+<p><span class="caption-text">Damping force, connected to velocity <span class="math notranslate nohighlight">\(\dot{x}\)</span>.</span><a class="headerlink" href="#fig-frame-c" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<figure class="align-default" id="fig-frame-d">
+<img alt="_images/frame_sketch_d.png" src="_images/frame_sketch_d.png" />
+<figcaption>
+<p><span class="caption-text">Inertia force related to mass components, connected to
+acceleration <span class="math notranslate nohighlight">\(\ddot{x}_t\)</span>.</span><a class="headerlink" href="#fig-frame-d" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+</div>
+<p>The equation of motion in a linear elastic case is thus given by</p>
+<div class="math notranslate nohighlight">
+\[m\ddot{x}(t) + c\dot{x}(t) + k x(t) = -m \ddot{x}_g(t).\]</div>
+<p>Hence the idea of a displacement-controlled experimental setup. The
+tunable shaking table should be able to model the seismic ground motion
+<span class="math notranslate nohighlight">\(x_g(t)\)</span> present, which is represented by the shaking table’s
+specimen plate movement. These motions can of course also be connected
+to other motions, such as the vibration of machinery, slides, or
+harmonic movements.</p>
+</section>
+<section id="signal-generation">
+<span id="siggen"></span><h2><strong>Signal Generation</strong><a class="headerlink" href="#signal-generation" title="Link to this heading">#</a></h2>
+<section id="harmonic-signals">
+<h3><strong>Harmonic Signals</strong><a class="headerlink" href="#harmonic-signals" title="Link to this heading">#</a></h3>
+<p>First, harmonic signals have been considered. They consist of a sum of frequency components and are closely related to the Fourier series. Choosing a number <span class="math notranslate nohighlight">\(n_{\Omega}\)</span> of frequencies, the position <span class="math notranslate nohighlight">\(x_{H}(t)\)</span> is calculated as the superposition of the harmonic frequencies and their respective amplitude factor by</p>
+<div class="math notranslate nohighlight" id="eq-harmonic">
+<span id="equation-eq-harmonic"></span><span class="eqno">(1)<a class="headerlink" href="#eq-harmonic" title="Link to this equation">#</a></span>\[x_H(t) = \sum_{k=1}^{n_{\Omega}} \mathbb{A}_k \sin(2\pi\mathbf{\Omega}_kt),\]</div>
+<p>where <span class="math notranslate nohighlight">\(\mathbf{\Omega}_i \in \mathbb{R}_{\geq0}\)</span> are the frequencies of interest and <span class="math notranslate nohighlight">\(\mathbb{A}_i \in \mathbb{R}_{\geq0}\)</span>
+the corresponding amplitude values with <span class="math notranslate nohighlight">\(i \in [1, n_{\Omega}]\)</span>. The figures below show a fixed harmonic signal with a single frequency and a mixed harmonic signal with three superposed frequency components. These signals are deterministic.</p>
+<div class="float docutils container" id="fig-harmonic-mixed-harmonic">
+<figure class="align-default" id="fig-input-signal-2hz" style="width: 60%">
+<img alt="_images/fixed_harmonic_pre_rampup_2Hz_10s-crop.png" src="_images/fixed_harmonic_pre_rampup_2Hz_10s-crop.png" />
+<figcaption>
+<p><span class="caption-text">Fixed harmonic signal with 2 Hz</span><a class="headerlink" href="#fig-input-signal-2hz" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<figure class="align-default" id="fig-input-signal-fibonacci" style="width: 60%">
+<img alt="_images/fixed_harmonic_pre_rampup_FibonacciHz_10s-crop.png" src="_images/fixed_harmonic_pre_rampup_FibonacciHz_10s-crop.png" />
+<figcaption>
+<p><span class="caption-text">Fixed harmonic signal with three overlapping frequencies</span><a class="headerlink" href="#fig-input-signal-fibonacci" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+</div>
+</section>
+<section id="stationary-stochastic-signals">
+<h3><strong>Stationary Stochastic Signals</strong><a class="headerlink" href="#stationary-stochastic-signals" title="Link to this heading">#</a></h3>
+<p>Another class of signals of interest in structural engineering consists
+of uni-variate stationary Gaussian stochastic processes. They can be
+described by the <strong>Spectral Representation Method</strong> (SRM) from a
+functional frequency content, the so-called Power Spectral Density (PSD)
+function. The SRM and its variations, such as the Stochastic Harmonic
+Function (SHF) representation <a class="footnote-reference brackets" href="#footcite-chen2017" id="id4" role="doc-noteref"><span class="fn-bracket">[</span>3<span class="fn-bracket">]</span></a>, are commonly
+used to simulate artificial ground motion <a class="footnote-reference brackets" href="#footcite-lyu2023" id="id5" role="doc-noteref"><span class="fn-bracket">[</span>4<span class="fn-bracket">]</span></a><a class="footnote-reference brackets" href="#footcite-liu2022" id="id6" role="doc-noteref"><span class="fn-bracket">[</span>5<span class="fn-bracket">]</span></a>.</p>
+<p>Any PSD function can be used in the OpenVIBE framework according to the
+user preferences. Among possible PSD, the Shinozuka and Deodatis
+frequency content <a class="footnote-reference brackets" href="#footcite-shinozuka1991simulation" id="id7" role="doc-noteref"><span class="fn-bracket">[</span>6<span class="fn-bracket">]</span></a> referred
+to as the Shinozuka benchmark and defined by the following PSD</p>
+<div class="math notranslate nohighlight" id="eq-sx">
+<span id="equation-eq-sx"></span><span class="eqno">(2)<a class="headerlink" href="#eq-sx" title="Link to this equation">#</a></span>\[   S_{S}(\omega) = \frac{1}{4} \sigma^2 b^3 \omega^2 e^{-b |\omega|},\quad -\infty &lt; \omega &lt; \infty,\]</div>
+<p>is chosen. The constant <span class="math notranslate nohighlight">\(\sigma\)</span> corresponds to the standard
+deviation of the stochastic signal and <span class="math notranslate nohighlight">\(b\)</span> is a parameter that
+models the correlation distance of the stochastic signals
+<a class="footnote-reference brackets" href="#footcite-shinozuka1988response" id="id8" role="doc-noteref"><span class="fn-bracket">[</span>7<span class="fn-bracket">]</span></a>. The values <span class="math notranslate nohighlight">\(\sigma = 1\)</span>
+and <span class="math notranslate nohighlight">\(b = 1\)</span> are chosen. From the reference PSD, a realization of
+the stochastic signal denoted <span class="math notranslate nohighlight">\(x_S(t)\)</span> reads</p>
+<div class="math notranslate nohighlight" id="eq-srm">
+<span id="equation-eq-srm"></span><span class="eqno">(3)<a class="headerlink" href="#eq-srm" title="Link to this equation">#</a></span>\[x_S(t) = \mathbb{A}_s \sum \limits_{n = 0}^{N-1} \sqrt{4 S_{x_{S}}(\omega_n) \Delta \omega} \cos(\omega_n t + \varphi_n).\]</div>
+<p>The angular frequencies <span class="math notranslate nohighlight">\(\omega_n\)</span> in <span class="math notranslate nohighlight">\(\text{rad/s}\)</span> are defined as
+<span class="math notranslate nohighlight">\(\omega_n = n \Delta \omega\)</span> with <span class="math notranslate nohighlight">\(n \in [0,N-1]\)</span> and
+<span class="math notranslate nohighlight">\(\Delta \omega = \omega_u/N\)</span>. The angular frequency
+<span class="math notranslate nohighlight">\(\omega_u = 4\pi\ \text{rad/s}\)</span> is the upper cut-off
+angular frequency, directly linked with the upper cut-off frequency as
+<span class="math notranslate nohighlight">\(f_u = \omega_u /2\pi\)</span> beyond which the PSD function vanishes. The
+corresponding time discretization is <span class="math notranslate nohighlight">\(\Delta t = \pi/\omega_u\)</span> in
+<span class="math notranslate nohighlight">\([\text{s}]\)</span> . The number of terms <span class="math notranslate nohighlight">\(N\)</span> is a choice
+which governs the accuracy of the approximation. The phase angles
+<span class="math notranslate nohighlight">\(\varphi_n\)</span> are independent realizations of a uniform distribution
+between <span class="math notranslate nohighlight">\(0\)</span> and <span class="math notranslate nohighlight">\(2 \pi\)</span>
+<a class="footnote-reference brackets" href="#footcite-shinozuka1991simulation" id="id9" role="doc-noteref"><span class="fn-bracket">[</span>6<span class="fn-bracket">]</span></a>.</p>
+<p>The signal magnitude is scaled by the factor
+<span class="math notranslate nohighlight">\(\mathbb{A}_s \in \mathbb{R}_{\geq0}\)</span> to achieve the displacement
+amplitude desired by the user. For instance, to reach a maximum
+displacement around <span class="math notranslate nohighlight">\(17\ \text{mm}\)</span>, the scaling factor
+<span class="math notranslate nohighlight">\(\mathbb{A}_s = 3\)</span> has been chosen. One realization, i.e. a
+stochastic signal generated with the Shinozuka benchmark is shown here:</p>
+<figure class="align-default" id="fig-shinozuka-signal">
+<img alt="_images/23-12_shnzk_signal_unfiltered-crop.png" src="_images/23-12_shnzk_signal_unfiltered-crop.png" />
+<figcaption>
+<p><span class="caption-text">One realization of a random signal with the Shinozuka PSD <a class="reference internal" href="#equation-eq-srm">(3)</a> for <span class="math notranslate nohighlight">\(N=128, \omega_u = 4\pi, \Delta t = \pi/\omega_u, T = 64 \text{s}, \mathbb{A}_s = 3\)</span></span><a class="headerlink" href="#fig-shinozuka-signal" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p>The periodogram <a class="footnote-reference brackets" href="#footcite-li2010" id="id10" role="doc-noteref"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></a><a class="footnote-reference brackets" href="#footcite-newland2012introduction" id="id11" role="doc-noteref"><span class="fn-bracket">[</span>8<span class="fn-bracket">]</span></a><a class="footnote-reference brackets" href="#footcite-behrendt2022periodogram" id="id12" role="doc-noteref"><span class="fn-bracket">[</span>9<span class="fn-bracket">]</span></a>
+is used to estimate the signal PSD based on the discrete Fourier
+transformation of the random signals <a class="reference internal" href="#equation-eq-srm">(3)</a>, as
+detailed in <a class="reference internal" href="#sec-periodogram"><span class="std std-ref">the Periodogram section</span></a>. The direct
+approximation of the signal PSD by an estimator like the periodogram is
+usually not possible, as the target PSD is not known exactly for natural
+processes.</p>
+<section id="shinozuka-benchmark">
+<h4>Shinozuka benchmark<a class="headerlink" href="#shinozuka-benchmark" title="Link to this heading">#</a></h4>
+<p>We introduced the Shinozuka benchmark as a way of testing the frequency accuracy of the table and the framework. Usually, a single realization from a stochastic signal does not produce a nice looking PSD, but for certain input PSD functions this can be the case (e.g. <a class="reference internal" href="#equation-eq-srm">(3)</a>). While looking for ways to ensure that the framework does what it is supposed to do, the idea came up to use this property. Generating a signal from this PSD, then measuring the movement of the table and estimating the frequency contents with the Periodogram, we can easily assess divergences in the table’s behavior.
+The <a class="reference internal" href="#fig-shinozuka-psd"><span class="std std-ref">figure below</span></a> shows the approximation of the Shinozuka PSD by the periodogram compared to the target PSD originally used to simulate the signal <a class="reference internal" href="#equation-eq-sx">(2)</a>. All frequency components in the signal are preserved and thus the approximation is very accurate. The accuracy of  the table can thus be evaluated by simulating one (or more for variance estimation) realizations with the Shinozuka PSD, measuring the displacement and then  comparing the measured PSD to the original. For an accurate motion both PSDs should align. Therefore, the shaking table movement can be validated for the  prescribed range of frequencies and accurate artificial ground motions of the shaking table will be expected for other stochastic signals generated by the SRM with similar frequency ranges to the Shinozuka benchmark.</p>
+<figure class="align-default" id="fig-shinozuka-psd">
+<img alt="_images/shinozuka_PSD_revamped_rad-crop.png" src="_images/shinozuka_PSD_revamped_rad-crop.png" />
+<figcaption>
+<p><span class="caption-text">Shinozuka benchmark: scaled periodogram of one arbitrary realization <a class="reference internal" href="#equation-eq-srm">(3)</a> and target PSD <a class="reference internal" href="#equation-eq-sx">(2)</a></span><a class="headerlink" href="#fig-shinozuka-psd" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+</section>
+</section>
+</section>
+<section id="post-processing-input-signals-for-the-shaking-table">
+<span id="postprocessing"></span><h2>Post-processing input signals for the shaking table<a class="headerlink" href="#post-processing-input-signals-for-the-shaking-table" title="Link to this heading">#</a></h2>
+<p>Some generated signals might require large initial accelerations or
+velocities due to the underlying numerical procedures. To circumvent
+these issues, we introduced post-processing procedures to ensure the
+safe usage of the shaking table.</p>
+<p>First, for the harmonic signals <span class="math notranslate nohighlight">\(x_H(t)\)</span>, artificial linear
+acceleration and deceleration phases based on a window-function are
+inserted. The acceleration phase lasts from <span class="math notranslate nohighlight">\(t=0\)</span> to <span class="math notranslate nohighlight">\(t=t_u\)</span>
+and the deceleration phase’s duration lasts from <span class="math notranslate nohighlight">\(t=t_d\)</span> to
+<span class="math notranslate nohighlight">\(t = T\)</span> such that the durations of acceleration and deceleration
+are <span class="math notranslate nohighlight">\(t_u\)</span> and <span class="math notranslate nohighlight">\(T_d = T - t_d\)</span>, respectively. Then, the
+harmonic signal <span class="math notranslate nohighlight">\(x_H(t)\)</span> is adjusted from these two windows as</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\hat{x}_H(t) =
+    \begin{cases}
+        \frac{t}{t_u} x_H, &amp; t&lt;t_u,\\
+        (1-\frac{t-T_d}{T-T_d}) x_H, &amp;t&gt;T_d,\\
+        x_H, &amp;else.
+    \end{cases}\end{split}\]</div>
+<p>Considering <span class="math notranslate nohighlight">\(t_u = t_d = 1\ \text{s}\)</span>, the harmonic signals from <a class="reference internal" href="#fig-input-signal-2hz"><span class="std std-ref">above</span></a> are
+corrected to have adequate acceleration and deceleration:</p>
+<div class="float docutils container" id="fig-post-processing-signals">
+<figure class="align-default" id="fig-input-post-signal-2hz" style="width: 60%">
+<img alt="_images/fixed_harmonic_post_rampup_2Hz_10s-crop.png" src="_images/fixed_harmonic_post_rampup_2Hz_10s-crop.png" />
+</figure>
+<figure class="align-default" id="fig-input-post-signal-fibonacci" style="width: 60%">
+<img alt="_images/fixed_harmonic_post_rampup_FibonacciHz_10s-crop.png" src="_images/fixed_harmonic_post_rampup_FibonacciHz_10s-crop.png" />
+</figure>
+</div>
+<p>Second, the position for the first time instance must always be zero,
+whereas it may not be a priori the case for the stochastic signal. This
+is achieved by zero padding for all signals, adding a zero position for
+the time instance <span class="math notranslate nohighlight">\(t=0\)</span>. Only one time instant is added and not an
+acceleration ramp because the frequency content of the signal has to be
+preserved. It results in <span class="math notranslate nohighlight">\(\hat{x}_S(t) = [0, x_S(t)]\)</span> and the time
+discretization is adjusted to <span class="math notranslate nohighlight">\(t \in [0,T+\Delta t]\)</span>:</p>
+<figure class="align-default" id="fig-shinozuka-signal-zero-padding">
+<img alt="_images/23-12_shnzk_signal_comparison_filter_unfilter-crop.png" src="_images/23-12_shnzk_signal_comparison_filter_unfilter-crop.png" />
+<figcaption>
+<p><span class="caption-text">Comparison of an unmodified SRM signal <span class="math notranslate nohighlight">\(x_S(t)\)</span> and the zero-padded signal <span class="math notranslate nohighlight">\(\hat{x}_S(t)\)</span>.</span><a class="headerlink" href="#fig-shinozuka-signal-zero-padding" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p>Other post-processing procedures, such as different window-functions for
+the ramp up and down are of course possible due to the open source
+nature of OpvenVIBE, but these are currently not implemented.</p>
+</section>
+<section id="periodogram">
+<span id="sec-periodogram"></span><h2>Periodogram<a class="headerlink" href="#periodogram" title="Link to this heading">#</a></h2>
+<p>The periodogram <a class="footnote-reference brackets" href="#footcite-newland2012introduction" id="id13" role="doc-noteref"><span class="fn-bracket">[</span>8<span class="fn-bracket">]</span></a> is an
+estimator to determine PSD functions from stochastic signals. It is
+defined as the squared absolute value of the discrete Fourier transform
+of a time signal <span class="math notranslate nohighlight">\(X(t)\)</span> as follows</p>
+<div class="math notranslate nohighlight" id="eq-periodogram">
+<span id="equation-eq-periodogram"></span><span class="eqno">(4)<a class="headerlink" href="#eq-periodogram" title="Link to this equation">#</a></span>\[\hat{S}_X(\omega_k) = \lim \limits_{T \rightarrow \infty} \frac{\Delta t^2}{T} \left|\sum \limits_{t = 0}^{T-1} X(t) e^{-2 \pi i k t / T}\right|^2,\]</div>
+<p>where <span class="math notranslate nohighlight">\(T\)</span> is the total number of discretized signal points and
+<span class="math notranslate nohighlight">\(\Delta t\)</span> the time increment. The time instant in the record
+<span class="math notranslate nohighlight">\(t\)</span> is just an index and <span class="math notranslate nohighlight">\(k\)</span> is the angular frequency
+discretization with <span class="math notranslate nohighlight">\(\omega_k = \frac{2 \pi k}{T}\)</span>.</p>
+</section>
+<section id="references">
+<h2>References<a class="headerlink" href="#references" title="Link to this heading">#</a></h2>
+<div class="docutils container" id="id14">
+<aside class="footnote-list brackets">
+<aside class="footnote brackets" id="footcite-chopra2007dynamics" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></span>
+<span class="backrefs">(<a role="doc-backlink" href="#id1">1</a>,<a role="doc-backlink" href="#id3">2</a>)</span>
+<p>A.K. Chopra. <em>Dynamics of Structures</em>. Pearson, Great Britain, 2007.</p>
+</aside>
+<aside class="footnote brackets" id="footcite-li2010" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></span>
+<span class="backrefs">(<a role="doc-backlink" href="#id2">1</a>,<a role="doc-backlink" href="#id10">2</a>)</span>
+<p>Jie Li and Jianbing Chen. <em>Stochastic Dynamics of Structures</em>. John Wiley &amp; Sons, Ltd (Asia), United States, 1 edition, 2010. URL: <a class="reference external" href="https://www.wiley.com/en-us/Stochastic+Dynamics+of+Structures-p-9780470824252">https://www.wiley.com/en-us/Stochastic+Dynamics+of+Structures-p-9780470824252</a>.</p>
+</aside>
+<aside class="footnote brackets" id="footcite-chen2017" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id4">3</a><span class="fn-bracket">]</span></span>
+<p>Jianbing Chen, Fan Kong, and Yongbo Peng. A stochastic harmonic function representation for non-stationary stochastic processes. <em>Mechanical Systems and Signal Processing</em>, 96:31–44, 2017. URL: <a class="reference external" href="https://www.sciencedirect.com/science/article/pii/S0888327017301784">https://www.sciencedirect.com/science/article/pii/S0888327017301784</a>, <a class="reference external" href="https://doi.org/https://doi.org/10.1016/j.ymssp.2017.03.048">doi:https://doi.org/10.1016/j.ymssp.2017.03.048</a>.</p>
+</aside>
+<aside class="footnote brackets" id="footcite-lyu2023" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id5">4</a><span class="fn-bracket">]</span></span>
+<p>Meng-Ze Lyu, Jian-Bing Chen, and Jia-Xu Shen. Refined probabilistic response and seismic reliability evaluation of high-rise reinforced concrete structures via physically driven dimension-reduced probability density evolution equation. <em>Acta Mechanica</em>, pages 1619–6937, 2023. URL: <a class="reference external" href="https://www.sciencedirect.com/science/article/pii/S0267726122002858">https://www.sciencedirect.com/science/article/pii/S0267726122002858</a>, <a class="reference external" href="https://doi.org/https://doi.org/10.1007/s00707-023-03666-4">doi:https://doi.org/10.1007/s00707-023-03666-4</a>.</p>
+</aside>
+<aside class="footnote brackets" id="footcite-liu2022" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id6">5</a><span class="fn-bracket">]</span></span>
+<p>Shuoyu Liu, Liuliu Peng, Jun Liu, Shuang Zhao, and Zhongming Jiang. Spectral representation-based efficient simulation method for fully non-stationary spatially varying ground motions. <em>Soil Dynamics and Earthquake Engineering</em>, 161:107436, 2022. URL: <a class="reference external" href="https://www.sciencedirect.com/science/article/pii/S0267726122002858">https://www.sciencedirect.com/science/article/pii/S0267726122002858</a>, <a class="reference external" href="https://doi.org/https://doi.org/10.1016/j.soildyn.2022.107436">doi:https://doi.org/10.1016/j.soildyn.2022.107436</a>.</p>
+</aside>
+<aside class="footnote brackets" id="footcite-shinozuka1991simulation" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span>6<span class="fn-bracket">]</span></span>
+<span class="backrefs">(<a role="doc-backlink" href="#id7">1</a>,<a role="doc-backlink" href="#id9">2</a>)</span>
+<p>Masanobu Shinozuka and George Deodatis. Simulation of stochastic processes by spectral representation. <em>Applied Mechanics Reviews</em>, 44(4):191–204, 1991. <a class="reference external" href="https://doi.org/10.1115/1.3119501">doi:10.1115/1.3119501</a>.</p>
+</aside>
+<aside class="footnote brackets" id="footcite-shinozuka1988response" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id8">7</a><span class="fn-bracket">]</span></span>
+<p>M Shinozuka and G Deodatis. Response variability of stochastic finite element systems. <em>Journal of Engineering Mechanics</em>, 114(3):499–519, 1988.</p>
+</aside>
+<aside class="footnote brackets" id="footcite-newland2012introduction" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span>8<span class="fn-bracket">]</span></span>
+<span class="backrefs">(<a role="doc-backlink" href="#id11">1</a>,<a role="doc-backlink" href="#id13">2</a>)</span>
+<p>David Edward Newland. <em>An introduction to random vibrations, spectral &amp; wavelet analysis</em>. Dover Publication, United States, 2012.</p>
+</aside>
+<aside class="footnote brackets" id="footcite-behrendt2022periodogram" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id12">9</a><span class="fn-bracket">]</span></span>
+<p>Marco Behrendt, Masaru Kitahara, Takeshi Kitahara, Liam Comerford, and Michael Beer. Data-driven reliability assessment of dynamic structures based on power spectrum classification. <em>Engineering Structures</em>, 268:114648, 2022. URL: <a class="reference external" href="https://www.sciencedirect.com/science/article/pii/S0141029622007453">https://www.sciencedirect.com/science/article/pii/S0141029622007453</a>, <a class="reference external" href="https://doi.org/https://doi.org/10.1016/j.engstruct.2022.114648">doi:https://doi.org/10.1016/j.engstruct.2022.114648</a>.</p>
+</aside>
+</aside>
+</div>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="BuildInstructions.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Build instructions</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="hardware.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Hardware</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#structural-analysis"><strong>Structural Analysis</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#signal-generation"><strong>Signal Generation</strong></a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#harmonic-signals"><strong>Harmonic Signals</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#stationary-stochastic-signals"><strong>Stationary Stochastic Signals</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#shinozuka-benchmark">Shinozuka benchmark</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#post-processing-input-signals-for-the-shaking-table">Post-processing input signals for the shaking table</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#periodogram">Periodogram</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+
+  <div class="tocsection sourcelink">
+    <a href="_sources/mathBackground.rst.txt">
+      <i class="fa-solid fa-file-lines"></i> Show Source
+    </a>
+  </div>
+</div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=bd9e20870c6007c4c509"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=bd9e20870c6007c4c509"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2024, Bittner, Grashorn, Banse.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.15.1.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

@@ -9,7 +9,7 @@ Usage
 **Microcontroller Firmware**
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The easiest way of uploading and managing the controller firmware is through `Visual Studio Code <https://code.visualstudio.com/>`_ and the `Platform.io extension <https://platformio.org/>`_.
+The easiest way of uploading and managing the controller firmware is through `Visual Studio Code <https://code.visualstudio.com/>`_ and the `PlatformIO extension <https://platformio.org/>`_. For more details see :ref:`ucInstallation`.
 
 ^^^^^^^^^^^^^^^^^^^^
 **MATLAB-Framework**

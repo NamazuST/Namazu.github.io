@@ -6,7 +6,9 @@
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><title>Search - Namazu 0.1 documentation</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Microcontroller &#8212; Namazu 0.1 documentation</title>
   
   
   
@@ -45,12 +47,11 @@
     <script src="_static/design-tabs.js?v=36754332"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'search';</script>
-  <script src="_static/searchtools.js"></script>
-  <script src="_static/language_data.js"></script>
-  <script src="searchindex.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'microcontroller';</script>
     <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="#" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Miscellaneous" href="misc.html" />
+    <link rel="prev" title="Functionality" href="functionality.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -87,7 +88,7 @@
     <div class="search-button__overlay"></div>
     <div class="search-button__search-container">
 <form class="bd-search d-flex align-items-center"
-      action="#"
+      action="search.html"
       method="get">
   <i class="fa-solid fa-magnifying-glass"></i>
   <input type="search"
@@ -186,8 +187,8 @@
                 </button>
                 <ul id="pst-nav-more-links" class="dropdown-menu">
                     
-                    <li class="nav-item">
-                      <a class="nav-link dropdown-item nav-internal" href="microcontroller.html">
+                    <li class="nav-item current active">
+                      <a class="nav-link dropdown-item nav-internal" href="#">
                         Microcontroller
                       </a>
                     </li>
@@ -357,8 +358,8 @@ document.write(`
                 </button>
                 <ul id="pst-nav-more-links-2" class="dropdown-menu">
                     
-                    <li class="nav-item">
-                      <a class="nav-link dropdown-item nav-internal" href="microcontroller.html">
+                    <li class="nav-item current active">
+                      <a class="nav-link dropdown-item nav-internal" href="#">
                         Microcontroller
                       </a>
                     </li>
@@ -443,46 +444,115 @@ document.write(`
           <div class="bd-content">
             <div class="bd-article-container">
               
-              <div class="bd-header-article"></div>
-              
-              
-  <div class="bd-search-container">
-    <h1>Search</h1>
-    <noscript>
-      <div class="admonition error">
-        <p class="admonition-title">Error</p>
-        <p>Please activate JavaScript to enable the search functionality.</p>
-      </div>
-    </noscript>
-    
-<form class="bd-search d-flex align-items-center"
-      action="#"
-      method="get">
-  <i class="fa-solid fa-magnifying-glass"></i>
-  <input type="search"
-         class="form-control"
-         name="q"
-         id="search-input"
-         placeholder="Search the docs ..."
-         aria-label="Search the docs ..."
-         autocomplete="off"
-         autocorrect="off"
-         autocapitalize="off"
-         spellcheck="false"/>
-  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form>
-    <div id="search-results"></div>
-  </div>
-  <script>
-    // Activate the search field on page load
-    let searchInput = document.querySelector("form.bd-search input");
-    if (searchInput) {
-        searchInput.focus();
-        searchInput.select();
-        console.log("[PST]: Set focus on search field.");
-    }
-  </script>
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
 
+
+
+<nav aria-label="Breadcrumb">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    <li class="breadcrumb-item active" aria-current="page">Microcontroller</li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="microcontroller">
+<h1>Microcontroller<a class="headerlink" href="#microcontroller" title="Link to this heading">#</a></h1>
+<section id="overview">
+<h2><strong>Overview</strong><a class="headerlink" href="#overview" title="Link to this heading">#</a></h2>
+<p>We currently use ESP32-microcontrollers for this project. These provide the necessary hardware (timers and two cores) and enough speed for most use-cases. We tested with ESP32-WROOM32 and ESP32 Firebeetle modules.</p>
+</section>
+<section id="firmware-installation">
+<span id="ucinstallation"></span><h2><strong>Firmware installation</strong><a class="headerlink" href="#firmware-installation" title="Link to this heading">#</a></h2>
+<p>For installing the firmware on the ESP32 it is advised to use <a class="reference external" href="https://code.visualstudio.com/">Visual Studio Code</a> and the <a class="reference external" href="https://platformio.org/">PlatformIO extension</a>. This makes changing and uploading the firmware easier. The PlatformIO can be installed through the extension tab in VS code. In addition, the USB-driver for the ESP (CH210x) is needed.</p>
+<p>Uploading of the firmware is done by switching in VS code to the firmware folder of the repository, then opening the PlatformIO tab and hitting upload. There are a few (more or less optional) settings to be made in the firmware. The options can be found in <code class="docutils literal notranslate"><span class="pre">config.h</span></code> in the <code class="docutils literal notranslate"><span class="pre">src</span></code> folder.</p>
+<div class="center docutils container">
+<div class="docutils container" id="tab-namazuvariants">
+<table class="table" id="id1">
+<caption><span class="caption-text">Firmware option descriptions.</span><a class="headerlink" href="#id1" title="Link to this table">#</a></caption>
+<tbody>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">#define</span> <span class="pre">DEBUG</span> <span class="pre">true/false</span></code></p></td>
+<td><p>Tells the controller to write debug messages to serial. Default false.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">#define</span> <span class="pre">SERIAL_RATE</span> <span class="pre">921600</span></code></p></td>
+<td><p>Define the baud-rate, i.e. the communication speed between
+controller and interfacing software. Default 921600.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">#define</span> <span class="pre">DEFAULT_RATE</span> <span class="pre">10</span></code></p></td>
+<td><p>Default rate for the command rate (number of commands per second). Can be changed via serial. Default 10</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">#define</span> <span class="pre">DEFAULT_SPMM</span> <span class="pre">30</span></code></p></td>
+<td><p>Default steps per mm of the table. Can be changed via Serial. Default 10</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">#define</span> <span class="pre">MOVEMENT_SPEED</span> <span class="pre">50</span></code></p></td>
+<td><p>Default movement speed of the table for positioning and centering. Default 50</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">#define</span> <span class="pre">CONFIG_HAS_BUTTONS</span> <span class="pre">true</span></code></p></td>
+<td><p>Whether or not buttons are attached to the table. See <a class="reference internal" href="hardware.html#hwinterface"><span class="std std-ref">hardware interface</span></a>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">#define</span> <span class="pre">CONFIG_HAS_LIMITS</span> <span class="pre">true</span></code></p></td>
+<td><p>Whether or not limit switches are attached to the table. See <a class="reference internal" href="hardware.html#hwinterface"><span class="std std-ref">hardware interface</span></a>.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">#define</span> <span class="pre">CONFIG_USE_EEPROM</span> <span class="pre">false</span></code></p></td>
+<td><p>Whether or not to use inbuilt EEPROM to save position data. CURRENTLY SOMEWHAT UNTESTED! Only supported on some ESP32 models.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">#define</span> <span class="pre">PIN_XXX</span></code></p></td>
+<td><p>Define digital PIN for the indicated functions (list can be found below).</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="dropdown admonition">
+<p class="admonition-title">PIN function list (click to expand)</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">PIN_EN</span></code>: enable</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">PIN_INVERT_EN</span></code>: inverted enable</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">PIN_DIR</span></code>: direction</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">PIN_INVERT_DIR</span></code> inverted direction</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">PIN_STEP</span></code>: step (or pulse on some drivers)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">PIN_BTN_START</span></code>: Start button</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">PIN_BTN_STOP</span></code>: Stop button</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">PIN_BTN_PAUSE</span></code>: Pause button</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">PIN_BTN_UP</span></code>: Button to move table in “up” direction</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">PIN_BTN_DOWN</span></code>: Button to move table in “down” direction</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">PIN_BTN_CENTER</span></code>: centering button</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">PIN_BTN_LIMIT_MIN</span></code>: pin for “lower” limit switch</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">PIN_BTN_LIMIT_MAX</span></code>: pin for “upper” limit switch</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Actual “up” and “down” directions, as well as the connection of the limit switches depends on the connection of the motor to the table and the exact motor wiring. The firmware is agnostic to the actual connection of the limit switches, but beware of directions for the buttons.</p>
+</div>
+</div>
+</section>
+</section>
+
+
+                </article>
+              
               
               
               
@@ -490,6 +560,24 @@ document.write(`
                 <footer class="prev-next-footer">
                   
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="functionality.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Functionality</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="misc.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Miscellaneous</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
 </div>
                 </footer>
               
@@ -497,7 +585,32 @@ document.write(`
             
             
               
-                <div class="bd-sidebar-secondary bd-toc"></div>
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview"><strong>Overview</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#firmware-installation"><strong>Firmware installation</strong></a></li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+
+  <div class="tocsection sourcelink">
+    <a href="_sources/microcontroller.rst.txt">
+      <i class="fa-solid fa-file-lines"></i> Show Source
+    </a>
+  </div>
+</div>
+
+</div></div>
               
             
           </div>

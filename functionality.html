@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Build instructions &#8212; Namazu 0.1 documentation</title>
+    <title>Functionality &#8212; Namazu 0.1 documentation</title>
   
   
   
@@ -47,11 +47,12 @@
     <script src="_static/design-tabs.js?v=36754332"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'BuildInstructions';</script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'functionality';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Mathematical Background" href="mathBackground.html" />
-    <link rel="prev" title="Usage" href="usage.html" />
+    <link rel="next" title="Microcontroller" href="microcontroller.html" />
+    <link rel="prev" title="Hardware" href="hardware.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -154,8 +155,8 @@
                     </li>
                 
 
-                    <li class="nav-item current active">
-                      <a class="nav-link nav-internal" href="#">
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="BuildInstructions.html">
                         Build instructions
                       </a>
                     </li>
@@ -175,8 +176,8 @@
                     </li>
                 
 
-                    <li class="nav-item">
-                      <a class="nav-link nav-internal" href="functionality.html">
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="#">
                         Functionality
                       </a>
                     </li>
@@ -325,8 +326,8 @@ document.write(`
                     </li>
                 
 
-                    <li class="nav-item current active">
-                      <a class="nav-link nav-internal" href="#">
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="BuildInstructions.html">
                         Build instructions
                       </a>
                     </li>
@@ -346,8 +347,8 @@ document.write(`
                     </li>
                 
 
-                    <li class="nav-item">
-                      <a class="nav-link nav-internal" href="functionality.html">
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="#">
                         Functionality
                       </a>
                     </li>
@@ -461,7 +462,7 @@ document.write(`
         <i class="fa-solid fa-home"></i>
       </a>
     </li>
-    <li class="breadcrumb-item active" aria-current="page">Build instructions</li>
+    <li class="breadcrumb-item active" aria-current="page">Functionality</li>
   </ul>
 </nav>
 </div>
@@ -478,131 +479,73 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section id="build-instructions">
-<h1>Build instructions<a class="headerlink" href="#build-instructions" title="Link to this heading">#</a></h1>
-<p>The present document shows the assembly of the table as it was put together in the IRTG/IRZ/IBNM-lab at the University of Hannover in June 2023. Note that the actual assembly of the frame might not be the most optimal, as it was observed that some parts of the frame could move and shift during operation. It might be possible to stiffen up the assembly by additional parts or by assembling the table in a  different way altogether. The present document provides only a suggestion of assembly.</p>
-<p>We kept the setup of all components (frame, motor, electronics) as general as possible, so that this framework should work with different setups. In our version we used a belt and gears together with a NEMA23 stepper motor to drive the table, but it should be possible to use other parts, i.e. other stepper motors or ball/trapezoidal screws for the driving mechanism. The <a class="reference internal" href="functionality.html"><span class="doc">software</span></a> works by controlling the stepping rate of the motor, so theoretically any stepper motor/controller should work (we tested this set up so far with a NEMA23 motor and a DM542 driver, as well as a NEMA17 with TMC2209 and A4988 driver).</p>
-<section id="assembly-of-the-table">
-<h2><strong>Assembly of the table</strong><a class="headerlink" href="#assembly-of-the-table" title="Link to this heading">#</a></h2>
-<p>This section describes the assembly of the table. For further details and explanations on hardware components please see the <a class="reference internal" href="hardware.html"><span class="doc">Hardware</span></a> section, for software the <a class="reference internal" href="functionality.html"><span class="doc">Software</span></a> section and for a quick overview the <a class="reference internal" href="usage.html"><span class="doc">Usage</span></a> section.</p>
-<section id="assembly-of-the-frame">
-<h3><strong>Assembly of the frame</strong><a class="headerlink" href="#assembly-of-the-frame" title="Link to this heading">#</a></h3>
-<p>The frame consists of the aluminium extrusions, screws with T-nuts, 90° angles and connector plates. We used two of the 400mm parts as supports for the rails and an assembly of one 300mm and one 400mm part as stands, as shown <a class="reference internal" href="#fig-frameassembly1"><span class="std std-ref">here</span></a>. Leave eight empty threaded sockets on each side (2 outer sides and 2 upwards sides) in between the fix of the 300mm and 400mm frame parts, these threads are later used for the e-motor and the gear of the v-belt. The height of the frame itself is therefore 90 mm, which is actually needed since the motor is somewhat tall. A downside of this assembly is that there is no cross-bracing, meaning the assembly can shift a bit. Furthermore, it is somewhat hard to actually line up the rails correctly such that they are parallel, which can lead to excess friction and vibrations. So far we did not come up with a good solution here.</p>
-<figure class="align-default" id="fig-frameassembly1" style="width: 60%">
-<img alt="_images/ShakingTable-Frame5.jpg" src="_images/ShakingTable-Frame5.jpg" />
+  <section id="functionality">
+<h1>Functionality<a class="headerlink" href="#functionality" title="Link to this heading">#</a></h1>
+<p>This section describes the general functioality of the table, including the controller firmware, Marv-Code and overview of the serial communication. We refer to the motor-code as Marv-Code, because it works similarly to G-code and Marvin “Marv” Banse was mostly responsible for its definition and implementation.</p>
+<section id="overview-and-introduction">
+<h2><strong>Overview and Introduction</strong><a class="headerlink" href="#overview-and-introduction" title="Link to this heading">#</a></h2>
+<p>The shaking table is equipped with a control system to apply any single-axis displacement to the plate. The software generates or loads a discretized time-displacement signal, translates it into Marv-code for the motor, and sends it to the microcontroller via the serial interface. The code is then saved on the microcontroller such that the experiment can be started or restarted at any point. The processing of Marv-code as well as the interface with the microcontroller and the microcontroller itself make up the control system.</p>
+<p>Starting from a (theoretically) continuous displacement signal <span class="math notranslate nohighlight">\(x(t)\)</span> as described in <a class="reference internal" href="mathBackground.html#siggen"><span class="std std-ref">the signal generation description</span></a> there are two discretization layers needed for the motor control. The process is illustrated in <a class="reference internal" href="#fig-discretizationprocedure"><span class="std std-ref">the figure below</span></a>, where the discretization process is greatly exaggerated for the sake of clarity. The continuous signal (solid blue line) is first discretized to obtain the digital signal (dashed red line), i.e. an array of size <span class="math notranslate nohighlight">\(n_t\)</span> consisting of numbers that specify the desired positions in a fixed interval <span class="math notranslate nohighlight">\(\Delta t\)</span>. The second discretization occurs in the microcontroller to determine the stepping rate of the motor. Programmatically, the microcontroller is given the list of positions and the time discretization <span class="math notranslate nohighlight">\(\Delta t\)</span>. Therefore, the firmware can linearly interpolate between the positions in time, where the distance between two positions determines the desired velocity and therefore the stepping rate. Note that the motor is only able to move one step at a time which results in a piecewise constant position signal (dotted black line). However, choosing <span class="math notranslate nohighlight">\(\Delta t\)</span> small enough results in a good accuracy of the movement. We found that using <span class="math notranslate nohighlight">\(\Delta t = 5\ \text{ms}\)</span> gives good results without pushing the limits of the microcontroller’s speed.</p>
+<figure class="align-default" id="fig-discretizationprocedure">
+<img alt="_images/discr.png" src="_images/discr.png" />
 </figure>
-<p>The two 400mm parts are screwed in to the top of the stands using the 90° angles. It might be a good idea to also screw down the inner parts of these with 90° angles for more rigidity. Note however that adjusting the rails later on is then difficult since the plate will be in the way.</p>
-<figure class="align-default" style="width: 60%">
-<img alt="_images/ShakingTable-Frame4.jpg" src="_images/ShakingTable-Frame4.jpg" />
-</figure>
-<figure class="align-default" style="width: 60%">
-<img alt="_images/ShakingTable-Frame3.jpg" src="_images/ShakingTable-Frame3.jpg" />
-</figure>
-<figure class="align-default" style="width: 60%">
-<img alt="_images/ShakingTable-Frame2.jpg" src="_images/ShakingTable-Frame2.jpg" />
-</figure>
-<figure class="align-default" style="width: 60%">
-<img alt="_images/ShakingTable-Frame1.jpg" src="_images/ShakingTable-Frame1.jpg" />
-</figure>
-<p>The rails can be screwed in on top of the frame using the M4x12 screws and the 3D-printed washers. I forgot to take pictures of the assembly with only the rails installed..</p>
-<figure class="align-default" id="id1" style="width: 60%">
-<img alt="_images/ShakingTable-RailScrew.jpg" src="_images/ShakingTable-RailScrew.jpg" />
+</section>
+<section id="microcontroller-firmware">
+<h2><strong>Microcontroller firmware</strong><a class="headerlink" href="#microcontroller-firmware" title="Link to this heading">#</a></h2>
+<p>The microcontroller’s program (called firmware) is the interfacing element between the software, an optional operator, and the motor.
+As shown <a class="reference internal" href="#fig-firmware-arch"><span class="std std-ref">here</span></a>, the firmware provides two interfaces:</p>
+<ul class="simple">
+<li><p><strong>USB</strong>: A serial interface, which processes readable commands and floating numbers in ASCII. An exemplary sequence of commands is shown in the example below.</p></li>
+<li><p><strong>PIN</strong>: A set of electrical lines to trigger certain signals. These pins allow the installation of an optional control panel with buttons to start, stop and adjust the table, or optional limit switches to protect the hardware.</p></li>
+</ul>
+<div class="literal-block-wrapper docutils container" id="id1">
+<span id="marvcodeexample"></span><div class="code-block-caption"><span class="caption-text">Example of Marv-code to move the table linearly to <span class="math notranslate nohighlight">\(+10\ \text{mm}\)</span>, then <span class="math notranslate nohighlight">\(-10\ \text{mm}\)</span>, then <span class="math notranslate nohighlight">\(10\ \text{mm}\)</span> with a speed of <span class="math notranslate nohighlight">\(10\ \text{mm/s}\)</span>.</span><a class="headerlink" href="#id1" title="Link to this code">#</a></div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="c1"># clear previous positions from memory</span>
+    <span class="n">reset</span>
+    <span class="c1"># set steps per mm</span>
+    <span class="nb">set</span> <span class="n">spmm</span> <span class="mi">160</span>
+    <span class="c1"># set instructions per second</span>
+    <span class="nb">set</span> <span class="n">rate</span> <span class="mi">1</span>
+    <span class="n">add</span> <span class="mi">10</span> <span class="c1"># add positions (in mm)</span>
+    <span class="n">add</span> <span class="mi">0</span>
+    <span class="n">add</span> <span class="o">-</span><span class="mi">10</span>
+    <span class="n">add</span> <span class="mi">0</span>
+    <span class="n">start</span> <span class="c1"># start the experiment</span>
+</pre></div>
+</div>
+</div>
+<p>The commands and signals are processed by the <em>Interface</em> component of the firmware.
+There are three classes of commands to differentiate:</p>
+<ul class="simple">
+<li><p>Configuration, beginning with <code class="docutils literal notranslate"><span class="pre">set</span></code></p></li>
+<li><p>Definition of the experiment, beginning with <code class="docutils literal notranslate"><span class="pre">add</span></code></p></li>
+<li><p>Actions, like <code class="docutils literal notranslate"><span class="pre">start</span></code> or <code class="docutils literal notranslate"><span class="pre">stop</span></code>.</p></li>
+</ul>
+<p>A full list of supported commands is listed <a class="reference internal" href="APIRef.html#marv-code"><span class="std std-ref">here</span></a>. A previous version of the motor control firmware used G-code, which is a standard already existing and most widely used in 3D printers and CNC machines. Thus, G-code could be used to communicate with the motor. However, we found that there is some overhead (such as acceleration limits) in the implementation of G-code itself that is not needed for the shaking table but interferes with the accuracy of the timings. We therefore introduced Marv-code, which is a similar but slimmer approach. It provides the most important settings (such as steps per millimeter, the discretization length <span class="math notranslate nohighlight">\(\Delta t\)</span>) and a list of positions to the controller. It is possible to change the settings without the need to interfere with the controller firmware itself. This process is independent of the used programming languages and operating systems, as long as they can interface with a serial port (i.e. a USB port). The firmware is designed to work with any kind of stepper motor/driver combination that uses the same <code class="docutils literal notranslate"><span class="pre">STEP</span></code> / <code class="docutils literal notranslate"><span class="pre">DIR</span></code> interface (A4988, DRV8825, TMC2208, TMC2209, DM542, etc.) and therefore also with a wide range of stepper motors.</p>
+<p>Displacement of the table is applied by the motor through a sequence of discretized positions for a series of constant elapsed times between two consecutive positions <span class="math notranslate nohighlight">\(\Delta t\)</span> during the whole signal. The firmware uses two so-called timers to drive the motor correctly. The first timer, <em>CmdTimer</em>, is configured to trigger at a static rate during the experiment. This rate is received by the <em>Interface</em> (c.f. <code class="docutils literal notranslate"><span class="pre">rate</span></code> command).
+The <em>Interface</em> sets up the <em>CmdTimer</em> and gets activated at a <code class="docutils literal notranslate"><span class="pre">start</span></code> command. Each time the <em>CmdTimer</em> triggers, it loads the next imposed position of the experiment and calculates the velocity and direction of the motor necessary to reach it. Then the <em>CmdTimer</em> triggers again.
+The <em>CmdTimer</em> also sets the drivers’ <code class="docutils literal notranslate"><span class="pre">DIR</span></code> pin according to the required direction.
+The calculated velocity multiplied by the step resolution (steps per millimeter) gives the rate of the so-called <em>StepTimer</em> to trigger.
+Thus, each time the <em>CmdTimer</em> processes the next position, it reconfigures the <em>StepTimer</em>.
+The <em>StepTimer</em> generates a rectangular signal and sets the <code class="docutils literal notranslate"><span class="pre">STEP</span></code> pin of the driver accordingly.
+Thus, Marv-code allows for the precise description of arbitrary, uniformly sampled signals directly via the serial interface. There is no need to re-upload the controller firmware for a new experiment. Furthermore, changes in the hardware setup are fully described by the <code class="docutils literal notranslate"><span class="pre">spmm</span></code> command.</p>
+<figure class="align-default" id="fig-firmware-arch">
+<img alt="_images/firmware_arch.png" src="_images/firmware_arch.png" />
 <figcaption>
-<p><span class="caption-text">Screws with washers for the rails</span><a class="headerlink" href="#id1" title="Link to this image">#</a></p>
+<p><span class="caption-text">Basic overview of the firmware</span><a class="headerlink" href="#fig-firmware-arch" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 </section>
-<section id="assembly-of-the-motor">
-<h3><strong>Assembly of the motor</strong><a class="headerlink" href="#assembly-of-the-motor" title="Link to this heading">#</a></h3>
-<p>The motor attachment assembly consists of two 70 mm aluminium extrusions, four 90° angles and the NEMA23 attachment bracket. The bracket is screwed into the extrusions with four screws and attached to the frame using the angles as shown in the pictures.</p>
-<figure class="align-default" style="width: 60%">
-<img alt="_images/ShakingTable-MotorAssembly2.jpg" src="_images/ShakingTable-MotorAssembly2.jpg" />
-</figure>
-<figure class="align-default" style="width: 60%">
-<img alt="_images/ShakingTable-MotorAssembly.jpg" src="_images/ShakingTable-MotorAssembly.jpg" />
-</figure>
-<figure class="align-default" style="width: 60%">
-<img alt="_images/ShakingTable-Motor1.jpg" src="_images/ShakingTable-Motor1.jpg" />
-</figure>
+<section id="microcontroller-interface">
+<h2><strong>Microcontroller interface</strong><a class="headerlink" href="#microcontroller-interface" title="Link to this heading">#</a></h2>
+<p>To upload the signal to the motor, it is translated into microcontroller-readable code via a simple interpreter that takes the pre-calculated time-displacement signal and generates a sequence of strings to be sent to the controller via serial. To ensure safe operating conditions, for each new experiment i.e., each time we load new data, we reset the current experiment data and prescribe the steps-per-mm setting and the rate (see the <code class="docutils literal notranslate"><span class="pre">reset</span></code>, <code class="docutils literal notranslate"><span class="pre">set</span> <span class="pre">spmm</span></code> and <code class="docutils literal notranslate"><span class="pre">set</span> <span class="pre">rate</span></code> commands in <a class="reference internal" href="#marvcodeexample"><span class="std std-ref">the Marv-code example</span></a>). Afterward, the interpreter writes the desired positions as a sequence of <code class="docutils literal notranslate"><span class="pre">add</span></code> instructions. Note that we do not need to prescribe the time since the signal is discretized uniformly. The rate is given by <code class="docutils literal notranslate"><span class="pre">rate</span> <span class="pre">n</span></code> i.e., the controller uses <code class="docutils literal notranslate"><span class="pre">n</span></code> positions per second.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">start</span></code> command can be sent simultaneously or separately without sending all of the previous commands again, e.g. to make sure that the table is safe to operate before starting the experiment. The experiment can also be interrupted at any point using the <code class="docutils literal notranslate"><span class="pre">stop</span></code> command, or, after the experiment is finished, restarted by sending <code class="docutils literal notranslate"><span class="pre">start</span></code> again. All generated data such as input signal, Marv-code, and parameters can be stored on disk to re-run experiments that were previously generated. This is currently realized with a custom class which also makes handling of all settings and parameters easy.</p>
+<p>Any programming language or framework that can use serial interfaces can communicate with the controller, which makes this approach very versatile. Already existing methods for signal generation can be employed without rewriting functions for different software packages or operating systems. Although we only provide a code base and interpreters for MATLAB and Python, and the general functionality is the same if another software environment is chosen. We therefore expect that translating the existing implementation to other languages is straightforward.</p>
 </section>
-<section id="assembly-of-the-belt-tensioner">
-<h3><strong>Assembly of the belt tensioner</strong><a class="headerlink" href="#assembly-of-the-belt-tensioner" title="Link to this heading">#</a></h3>
-<p>This assembly is used to tension the belt (as the name suggests). It consists of two 70mm aluminium extrusions, a connector plate, angles and the 3D-printed tensioner itself. The two extrusions are connected with the connector plate and screwed in on the short side with a 90° angle. For rigidity reasons we used another angle to screw it in the top part of the frame stand (see <a class="reference internal" href="#fig-tensionerassembly5"><span class="std std-ref">here</span></a>). The 3D-printed part should slide on top of the extrusions and can be attached with T-nuts and M4x12 screws from the sides (see <a class="reference internal" href="#fig-tensionerassembly4"><span class="std std-ref">here</span></a>).</p>
-<figure class="align-default" style="width: 60%">
-<img alt="_images/ShakingTable-TensionerAssembly5.jpg" src="_images/ShakingTable-TensionerAssembly5.jpg" />
-</figure>
-<figure class="align-default" style="width: 60%">
-<img alt="_images/ShakingTable-TensionerAssembly4.jpg" src="_images/ShakingTable-TensionerAssembly4.jpg" />
-</figure>
-<figure class="align-default" style="width: 60%">
-<img alt="_images/ShakingTable-TensionerAssembly.jpg" src="_images/ShakingTable-TensionerAssembly.jpg" />
-</figure>
-<figure class="align-default" id="fig-tensionerassembly4" style="width: 60%">
-<img alt="_images/ShakingTable-TensionerAssembly3.jpg" src="_images/ShakingTable-TensionerAssembly3.jpg" />
-</figure>
-<figure class="align-default" id="fig-tensionerassembly5" style="width: 60%">
-<img alt="_images/ShakingTable-TensionerAssembly2.jpg" src="_images/ShakingTable-TensionerAssembly2.jpg" />
-</figure>
-</section>
-<section id="belt">
-<h3><strong>Belt</strong><a class="headerlink" href="#belt" title="Link to this heading">#</a></h3>
-<p>The 3D-printed belt holders are screwed into the plate using M4x12 screws and nuts. The belt can then be inserted into these and fastened with M3 screws from the side. Note that in order to screw in these screws, there are M3-nuts on the inside with a small recess so they don’t turn while turning the screw. If the screw is pushed too much they can jump out of this recess and it is not possible to fasten the belt. Just pull on the screw a bit until the nut is recessed again if that happens. It is also difficult to reach these screws while the plate is attached to the rails, so either use a very long or very short screwdriver or measure the needed belt length, detach the plate and then attach the belt. Loosen the two small screws on the tensioner (don’t remove them, they are used to hold the tensioner-plate in place), then loosen the two long screws to move the tensioner-plate as much forward as possible. Attach the belt to the motor gear and the gear on the tensioner, then tighten the belt using the two long screws. When the belt is tight enough, screw the tensioner-plate down with the two smaller screws. This whole assembly would of course work better if made out of metal, since it being plastic means that it can bend under the tension.</p>
-<figure class="align-default" style="width: 60%">
-<img alt="_images/ShakingTable-Fastener.jpg" src="_images/ShakingTable-Fastener.jpg" />
-</figure>
-<figure class="align-default" style="width: 60%">
-<img alt="_images/ShakingTable-Fastener2.jpg" src="_images/ShakingTable-Fastener2.jpg" />
-</figure>
-<figure class="align-default" style="width: 60%">
-<img alt="_images/ShakingTable-Fastener3.jpg" src="_images/ShakingTable-Fastener3.jpg" />
-</figure>
-<figure class="align-default" style="width: 60%">
-<img alt="_images/ShakingTable-Tensioner3.jpg" src="_images/ShakingTable-Tensioner3.jpg" />
-</figure>
-<figure class="align-default" style="width: 60%">
-<img alt="_images/ShakingTable-Tensioner2.jpg" src="_images/ShakingTable-Tensioner2.jpg" />
-</figure>
-<figure class="align-default" style="width: 60%">
-<img alt="_images/ShakingTable-Tensioner1.jpg" src="_images/ShakingTable-Tensioner1.jpg" />
-</figure>
-</section>
-<section id="complete-table">
-<h3><strong>Complete table</strong><a class="headerlink" href="#complete-table" title="Link to this heading">#</a></h3>
-<figure class="align-default" style="width: 60%">
-<img alt="_images/ShakingTable-AssemblyTop.jpg" src="_images/ShakingTable-AssemblyTop.jpg" />
-</figure>
-<figure class="align-default" style="width: 60%">
-<img alt="_images/ShakingTable-AssemblyFront.jpg" src="_images/ShakingTable-AssemblyFront.jpg" />
-</figure>
-<figure class="align-default" style="width: 60%">
-<img alt="_images/ShakingTable-AssemblySide.jpg" src="_images/ShakingTable-AssemblySide.jpg" />
-</figure>
-<figure class="align-default" style="width: 60%">
-<img alt="_images/ShakingTable-AssemblySide2.jpg" src="_images/ShakingTable-AssemblySide2.jpg" />
-</figure>
-</section>
-</section>
-<section id="assembly-of-the-electronics">
-<h2><strong>Assembly of the electronics</strong><a class="headerlink" href="#assembly-of-the-electronics" title="Link to this heading">#</a></h2>
-<p>The micro controller, driver and motor need to be connected in a specific way to operate properly. The DM542-driver has inputs for <code class="docutils literal notranslate"><span class="pre">DIR</span></code> and <code class="docutils literal notranslate"><span class="pre">STEP</span></code> signals which need to be connected to the micro controller, outputs to the motor and it also needs to be connected to the power supply. The <code class="docutils literal notranslate"><span class="pre">DIR-</span></code> and <code class="docutils literal notranslate"><span class="pre">PUL-</span></code> inputs need to be connected to <code class="docutils literal notranslate"><span class="pre">GND</span></code> (0 V), <code class="docutils literal notranslate"><span class="pre">DIR+</span></code> and <code class="docutils literal notranslate"><span class="pre">STEP+</span></code> are connected to pins <code class="docutils literal notranslate"><span class="pre">G4</span></code> and <code class="docutils literal notranslate"><span class="pre">G23</span></code> respectively. This could be changed in the ESP32-software if desired, but that includes re-flashing the software onto the controller. The motor is connected to the NEMA23 according to <a class="reference internal" href="#fig-wiringstepperdriver"><span class="std std-ref">this</span></a>, where the colors of the leads of the  motor are indicated (<code class="docutils literal notranslate"><span class="pre">B-</span></code> - blue, <code class="docutils literal notranslate"><span class="pre">B+</span></code> - red, <code class="docutils literal notranslate"><span class="pre">A-</span></code> - green, <code class="docutils literal notranslate"><span class="pre">A+</span></code> - black). The power supply is directly connected to the driver, where the red connector is <code class="docutils literal notranslate"><span class="pre">V+</span></code> and the blue connector is <code class="docutils literal notranslate"><span class="pre">GND</span></code>.</p>
-<figure class="align-default" id="id2">
-<span id="fig-wiringstepperdriver"></span><a class="reference internal image-reference" href="_images/ESP_Driver_Motor.png"><img alt="_images/ESP_Driver_Motor.png" src="_images/ESP_Driver_Motor.png" style="width: 719.0px; height: 469.0px;" /></a>
-<figcaption>
-<p><span class="caption-text">Wiring of ESP32, NEMA23 and DM542</span><a class="headerlink" href="#id2" title="Link to this image">#</a></p>
-</figcaption>
-</figure>
-<figure class="align-default" id="id3" style="width: 60%">
-<img alt="_images/ShakingTable-DriverSettings.jpg" src="_images/ShakingTable-DriverSettings.jpg" />
-<figcaption>
-<p><span class="caption-text">Stepper driver settings</span><a class="headerlink" href="#id3" title="Link to this image">#</a></p>
-</figcaption>
-</figure>
-<figure class="align-default" id="id4" style="width: 60%">
-<img alt="_images/ShakingTable-DriverSettingsClose.jpg" src="_images/ShakingTable-DriverSettingsClose.jpg" />
-<figcaption>
-<p><span class="caption-text">Stepper driver settings (close up)</span><a class="headerlink" href="#id4" title="Link to this image">#</a></p>
-</figcaption>
-</figure>
+<section id="pre-post-processing-and-restrictions">
+<h2><strong>Pre-/post-processing and restrictions</strong><a class="headerlink" href="#pre-post-processing-and-restrictions" title="Link to this heading">#</a></h2>
+<p>Input harmonic and stationary random signals are generated with the algorithms introduced in the <a class="reference internal" href="mathBackground.html#siggen"><span class="std std-ref">signal generation section</span></a>. However, the input signals are not restricted to these algorithms. Any signal could be considered. For instance, we could generate non-stationary signals including frequency sweeps or increasing amplitude, or load pre-recorded data from vibration experiments or earthquakes.</p>
+<p>The only restriction we impose is that the signal is discretized with a constant sampling rate (i.e. <span class="math notranslate nohighlight">\(\Delta t = \text{const.}\)</span>). Besides, the desired amplitudes and frequencies should not exceed safe operating conditions, especially when no limit switches are used. To avoid sudden acceleration spikes, it is advised to use the linear ramp up and ramp down shown <a class="reference internal" href="mathBackground.html#postprocessing"><span class="std std-ref">here</span></a> whenever possible.</p>
 </section>
 </section>
 
@@ -617,20 +560,20 @@ document.write(`
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="usage.html"
+       href="hardware.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Usage</p>
+        <p class="prev-next-title">Hardware</p>
       </div>
     </a>
     <a class="right-next"
-       href="mathBackground.html"
+       href="microcontroller.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Mathematical Background</p>
+        <p class="prev-next-title">Microcontroller</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -652,22 +595,17 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#assembly-of-the-table"><strong>Assembly of the table</strong></a><ul class="visible nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#assembly-of-the-frame"><strong>Assembly of the frame</strong></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#assembly-of-the-motor"><strong>Assembly of the motor</strong></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#assembly-of-the-belt-tensioner"><strong>Assembly of the belt tensioner</strong></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#belt"><strong>Belt</strong></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#complete-table"><strong>Complete table</strong></a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#assembly-of-the-electronics"><strong>Assembly of the electronics</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview-and-introduction"><strong>Overview and Introduction</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#microcontroller-firmware"><strong>Microcontroller firmware</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#microcontroller-interface"><strong>Microcontroller interface</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-post-processing-and-restrictions"><strong>Pre-/post-processing and restrictions</strong></a></li>
 </ul>
   </nav></div>
 
   <div class="sidebar-secondary-item">
 
   <div class="tocsection sourcelink">
-    <a href="_sources/BuildInstructions.rst.txt">
+    <a href="_sources/functionality.rst.txt">
       <i class="fa-solid fa-file-lines"></i> Show Source
     </a>
   </div>
