@@ -5,10 +5,7 @@ Welcome to Namazu's documentation!
 
 The motivation behind this framework is to offer a versatile and low-cost framework for research and education for dynamic systems and earthquake engineering. Through our background in these fields we designed the firmware with earthquake signal generation from stochastic processes in mind.
 
-.. figure:: _images/logos/LogoSmall.png
-   :target: https://en.wikipedia.org/wiki/Namazu
-
-   Namazu as envisioned by DALL-E
+The source code, 3D-files and further documentation can be found on `github <https://github.com/NamazuST/Namazu>`_. The work is also published in a paper: Grashorn J., Bittner, M., Banse, M. et al. (2024). Namazu: Low-cost tunable shaking table for vibration experiments under generic signals, Experimental Techniques, `https://doi.org/10.1007/s40799-024-00727-8 <https://doi.org/10.1007/s40799-024-00727-8>`_
 
 .. note::
 
@@ -39,4 +36,34 @@ This work is a cooperation of the
 * Institute of Mechanics and Computational Mechanics (Leibniz University Hannover)
 
 .. image:: _images/logos/FullLogos.jpg
+
+Citation
+-------------
+
+The paper is cited as:
+
+   @article{NamazuEXTE2024,
+      author = {Grashorn J., Bittner, M., Banse, M., Chang, X., Beer, M., Fau, A.},
+      title = {Namazu: Low-cost tunable shaking table for vibration experiments under generic signals},
+      year = {2024},
+      publisher = {Springer Nature},
+      journal = {Experimental Techniques},
+      doi = {10.1007/s40799-024-00727-8},
+   }
+
+The repository is cited as:
+
+   @misc{NamazuRepo2024,
+      author = {Grashorn J., Bittner, M., Banse, M.},
+      title = {Namazu},
+      year = {2024},
+      publisher = {GitHub},
+      journal = {GitHub repository},
+      doi = {10.5281/zenodo.10533795},
+   }
+
+.. figure:: _images/logos/LogoSmall.png
+   :target: https://en.wikipedia.org/wiki/Namazu
+
+   Namazu as envisioned by DALL-E
 
